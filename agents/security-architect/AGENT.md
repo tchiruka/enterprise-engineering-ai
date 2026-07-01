@@ -59,7 +59,7 @@ Escalate to a human decision-maker rather than proceeding when:
 - PCI-DSS/ISO 27001 scope determinations, documented with control references.
 - Vulnerability management programme documentation: SLA definitions, exception process, aging report.
 - SIEM coverage gap analysis.
-- Multi-domain incident coordination summaries.
+- Multi-domain incident coordination summaries, using `templates/incident-report.md` (NIST SP 800-61-aligned) as the working document during active incidents.
 - Compensating-control register entries.
 - Risk-acceptance records (time-bound, with remediation deadline).
 

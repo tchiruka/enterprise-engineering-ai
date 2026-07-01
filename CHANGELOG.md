@@ -144,3 +144,19 @@ All notable changes to this platform are tracked here by milestone.
 - Re-run the cross-reference audit periodically per the recommendation in `docs/cross-reference-audit-milestone-10.md` (every 3-4 milestones or before any release/tag) rather than treating this as a one-time exercise.
 - Second non-AD, non-VMware workflow — candidate: a Linux CIS hardening lifecycle workflow (build → harden → validate → periodic re-audit), giving `agents/linux-platform-engineer/AGENT.md` the same workflow-backed depth the Windows and VMware agents already have.
 - `templates/incident-report.md` — still a "candidate" per `knowledge/index.md`'s NIST SP 800-61 note; worth revisiting now that `standards/logging.md` exists and could feed it directly.
+
+## [Milestone 11] - 2026-07-01
+
+### Added
+- Third full workflow: `workflows/linux-cis-hardening-lifecycle/WORKFLOW.md` — gives `agents/linux-platform-engineer/AGENT.md` the same workflow-backed depth as Windows and VMware. Three scenarios: Baseline Hardening (canary-first rollout pattern), Control Conflict/Documented Exception (routes to Security Architect's compensating-control register rather than silent skipping), and Periodic Re-Audit (drift detection). Codifies the estate's existing scope-boundary discipline (hardening script explicitly excludes PAM/auth and firewall design intent) as a first-class MUST rule rather than an implicit convention.
+- `templates/incident-report.md` — NIST SP 800-61-aligned incident report template (Detection & Analysis, Containment, Eradication, Recovery, Post-Incident Activity), distinct from `templates/rca.md`: this is the live working document during an incident; the RCA is the after-the-fact root-cause deep-dive it links to. Includes a daily/periodic reporting roll-up note addressing the NIST SP 800-61 daily-reporting use case.
+
+### Changed
+- `knowledge/index.md` NIST SP 800-61 row updated — no longer "not yet integrated," now points to `templates/incident-report.md`.
+- `agents/linux-platform-engineer/AGENT.md` — Responsibility #1 now references its owned workflow explicitly.
+- `agents/security-architect/AGENT.md` — Deliverables section now references `templates/incident-report.md` as the working document for multi-domain incident coordination.
+
+### Next milestone
+- Re-run the cross-reference audit (per the Milestone 10 recommendation) now that two new files with several cross-references have been added since the last check.
+- `docs/incident-response-playbook.md` or equivalent in `playbooks/` — `templates/incident-report.md` structures the document, but the platform doesn't yet have a playbook describing the response *process* itself (who's paged, escalation timing, communication cadence) to go with the document template.
+- Consider whether `workflows/linux-cis-hardening-lifecycle/WORKFLOW.md`'s canary-first rollout pattern should be retrofitted into the two existing lifecycle workflows (AD DC, VMware ESXi/vCenter), which don't currently have an explicit canary/pilot-host step before broader rollout.

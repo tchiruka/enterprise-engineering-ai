@@ -99,7 +99,7 @@ These aren't vendor documentation but are treated with equivalent authority for 
 | ISO/IEC 27001:2022 | ISMS controls (Annex A) | `templates/change-request.md`, `templates/rca.md`, most agents |
 | COBIT 2019 | Governance (esp. BAI06 change management) | `agents/chief-infrastructure-engineer/AGENT.md` |
 | ITIL v4 | Change enablement, problem management, service management practices | Platform-wide |
-| NIST SP 800-61 | Incident handling (referenced for daily reporting use, per Tonde's stated interest) | Not yet formally integrated into a template — candidate for a future `templates/incident-report.md` |
+| NIST SP 800-61 | Incident handling (referenced for daily reporting use, per Tonde's stated interest) | `templates/incident-report.md` structures around its four-phase lifecycle (Preparation, Detection & Analysis, Containment/Eradication/Recovery, Post-Incident Activity); owned by `agents/security-architect/AGENT.md` for coordination |
 
 ## Maintenance note
 
