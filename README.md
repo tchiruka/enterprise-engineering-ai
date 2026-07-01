@@ -61,6 +61,7 @@ This repository is being built incrementally, one milestone at a time — see `C
 - **6 standards** (`standards/`): PowerShell, Bash, Ansible, Git, Logging, Naming Conventions.
 - **2 playbooks** (`playbooks/`): Incident Response, Disaster Recovery Failover.
 - **4 worked examples** (`examples/`): a clean multi-step change (AD DC swing migration), a failure/rollback path (ESXi upgrade), a programme-level artifact (10G migration programme charter), and a real (not synthetic) incident RCA (SSSD/LDAP firewall interaction).
+- **1 test suite** (`tests/validate-repo.sh`): structural validation covering agent/workflow section completeness, placeholder-text scanning, and cross-reference consistency — see `tests/README.md`.
 - **1 knowledge index** (`knowledge/index.md`) and **1 glossary** (`docs/glossary.md`) tying the above together.
 
 This snapshot will drift out of date the moment the next milestone lands — treat `CHANGELOG.md` as the authoritative record and this section as a periodically-refreshed convenience, not a live-updating source of truth.

@@ -254,3 +254,21 @@ All notable changes to this platform are tracked here by milestone.
 - `playbooks/_TEMPLATE.md` — now explicitly flagged in `CONTRIBUTING.md` as reasonable once a third playbook exists to confirm the pattern; the platform doesn't yet have a third playbook to trigger that.
 - Chief Infrastructure Engineer, Backup & DR Architect, and Security Architect remain the three agents without dedicated workflows — per this milestone's own next-milestone note, this is expected given their programme/playbook-shaped nature rather than a gap requiring the same treatment as OpenStack's was, but worth confirming that reasoning still holds as the repository grows rather than assuming it permanently.
 - Consider whether `agents/linux-platform-engineer/AGENT.md` or `workflows/linux-cis-hardening-lifecycle/WORKFLOW.md` should be updated to explicitly reference the `ldap_connection_expire_timeout = 60` finding's full diagnostic narrative now documented in `examples/sssd-ldap-firewall-rca-real-incident/RCA.md`, rather than only referencing the fix in passing as they currently do.
+
+## [Milestone 18] - 2026-07-01
+
+### Added
+- `tests/validate-repo.sh` — the platform's first concrete implementation of the "Testing framework" deliverable named in the original project brief but never built until now. A dependency-free Bash script (per `standards/bash.md`) checking: agent structural completeness (9 required sections), workflow structural completeness (10 required sections), stray placeholder text outside template files, and cross-reference consistency against a maintained deferred-reference allow-list kept in sync with `docs/cross-reference-audit-milestone-13.md`. Verified working via a deliberate break-then-restore sanity check (removed a required section and injected a stray `TODO` into a real agent file, confirmed the script caught both, then restored the file) before being committed.
+- `tests/README.md` — explains the suite's scope, explicitly states what it does and doesn't check (structural linter, not a technical reviewer), and documents the maintenance obligation to keep its `DEFERRED_REFS` allow-list in sync with the audit document.
+
+### Changed
+- `CONTRIBUTING.md` — style rules updated to point at `tests/validate-repo.sh` as the preferred way to run the periodic consistency check, rather than only describing the manual `grep` process.
+- `docs/architecture.md` and `README.md` — "where to look for what" and current-contents snapshot updated to include the test suite.
+
+### Verification
+- `tests/validate-repo.sh` run against the full repository post-changes: **17 passed, 0 failed**, exit code 0.
+
+### Next milestone
+- `playbooks/_TEMPLATE.md` — still pending a third playbook to justify it (unchanged from Milestone 17).
+- Consider extending `tests/validate-repo.sh` with a check for the multi-vendor/multi-engine explicit-statement discipline `CONTRIBUTING.md` now documents (e.g. confirming `agents/network-architect/AGENT.md` and `agents/database-engineer/AGENT.md` actually name their respective vendors/engines in the Vendor Guidance section) — currently that discipline is documented but not mechanically enforced the way section-completeness now is.
+- The `examples/sssd-ldap-firewall-rca-real-incident/RCA.md` cross-link into `agents/linux-platform-engineer/AGENT.md`/`workflows/linux-cis-hardening-lifecycle/WORKFLOW.md` — still open from Milestone 17.

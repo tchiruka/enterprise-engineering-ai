@@ -23,7 +23,7 @@ Where an agent's domain spans more than one vendor or engine (e.g. `agents/netwo
 - Reference the specific standard/control where a requirement originates (e.g. "PCI-DSS v4.0 Req. 10.2" rather than "for compliance").
 - If a new file introduces a platform-specific term intended for reuse elsewhere (e.g. a new named pattern like "canary-first"), add it to `docs/glossary.md` in the same change — don't let terminology accumulate undefined.
 - If a new file references a vendor documentation source not already catalogued, add it to `knowledge/index.md` in the same change, per that document's own maintenance note.
-- Periodically (every 3-4 milestones, or before any release/tag) re-run the cross-reference consistency check described in `docs/cross-reference-audit-milestone-13.md` and update that document in place rather than spawning a new numbered successor, unless the audit methodology itself changes.
+- Periodically (every 3-4 milestones, or before any release/tag) re-run the cross-reference consistency check described in `docs/cross-reference-audit-milestone-13.md` and update that document in place rather than spawning a new numbered successor, unless the audit methodology itself changes — or, preferably, run `tests/validate-repo.sh`, which automates this check plus agent/workflow structural validation and placeholder-text scanning. See `tests/README.md`.
 
 ## Versioning
 
