@@ -160,3 +160,20 @@ All notable changes to this platform are tracked here by milestone.
 - Re-run the cross-reference audit (per the Milestone 10 recommendation) now that two new files with several cross-references have been added since the last check.
 - `docs/incident-response-playbook.md` or equivalent in `playbooks/` — `templates/incident-report.md` structures the document, but the platform doesn't yet have a playbook describing the response *process* itself (who's paged, escalation timing, communication cadence) to go with the document template.
 - Consider whether `workflows/linux-cis-hardening-lifecycle/WORKFLOW.md`'s canary-first rollout pattern should be retrofitted into the two existing lifecycle workflows (AD DC, VMware ESXi/vCenter), which don't currently have an explicit canary/pilot-host step before broader rollout.
+
+## [Milestone 12] - 2026-07-01
+
+### Added
+- `playbooks/incident-response/PLAYBOOK.md` — the response *process* companion to `templates/incident-report.md`: severity definitions, response-time/escalation targets by severity, step-by-step NIST SP 800-61-aligned process (Detect & Triage → Analyze → Contain → Eradicate → Recover → Post-Incident), communication cadence by severity, and a roles quick reference tying back to `agents/security-architect/AGENT.md` (coordination) and the relevant domain specialist (execution).
+
+### Changed
+- `workflows/active-directory-domain-controller-lifecycle/WORKFLOW.md` — Risk Analysis SHOULD rule extended with an explicit canary-first pattern for multi-DC/multi-forest programmes (apply to the lowest-impact DC first, validate, then proceed) — directly relevant to the active sec.v.co.zw/eus.v.co.zw upgrade programme.
+- `workflows/vmware-esxi-vcenter-upgrade-lifecycle/WORKFLOW.md` — Risk Analysis SHOULD rule extended to cover cross-cluster/programme-level canary selection, complementing the existing within-cluster rolling-host approach.
+
+### Audit note
+- Re-ran the cross-reference consistency check from Milestone 10 (57 unique path-style references now, up from 86 raw/45 unique previously counted differently — methodology corrected this pass to properly distinguish directory references like `` `agents/` `` from file references). Result: clean. The only new "missing" reference was `docs/incident-response-playbook.md`, which this milestone's `playbooks/incident-response/PLAYBOOK.md` resolves (different path than originally proposed, but the same gap). `standards/terraform.md` and the historical `docs/roadmap.md` note remain correctly deferred/historical, as previously documented.
+
+### Next milestone
+- Update `docs/cross-reference-audit-milestone-10.md`'s methodology note or supersede it with a Milestone 12 re-audit document, since this pass caught a methodology bug (directory vs. file reference conflation) in the original audit script.
+- `playbooks/` now has its first real content — consider whether other domains warrant a playbook-vs-workflow distinction (e.g. a DR failover playbook alongside `agents/backup-dr-architect/AGENT.md`'s existing DR runbook ownership, to mirror the incident-report/incident-response-playbook pairing established this milestone).
+- The repository is now large enough (8 agents, 3 workflows, 6 templates, 7 standards, 1 playbook, knowledge index, 2 examples) that a `docs/glossary.md` defining platform-specific terms (canary-first, forward-fix contingency, compensating-control register, blast radius) used consistently across files but never centrally defined might be worth adding.
