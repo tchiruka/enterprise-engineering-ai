@@ -208,3 +208,15 @@ All notable changes to this platform are tracked here by milestone.
 - No dedicated workflow exists yet for the 10G migration programme's core execution pattern (core switching upgrade) — this milestone's worked example surfaced this honestly as a programme risk rather than inventing a workflow to fill the gap artificially; authoring `workflows/network-core-switching-upgrade/WORKFLOW.md` from real or realistic execution detail would close it properly.
 - Re-run the cross-reference audit (per the now-established Milestone 10/13 pattern) given four new/changed files this milestone, including two files (`README.md`, `docs/architecture.md`) that are disproportionately likely to accumulate stale references since they summarize the rest of the repository.
 - `agents/database-engineer/AGENT.md` has no dedicated workflow either (unlike Windows/VMware/Linux, which each have one) — a PostgreSQL upgrade/patching lifecycle workflow would bring database coverage to parity with the other core platform agents.
+
+## [Milestone 15] - 2026-07-01
+
+### Changed
+- **Correction:** `agents/database-engineer/AGENT.md` scope broadened from PostgreSQL-only to **PostgreSQL, MySQL, and Microsoft SQL Server (MSSQL)** — Milestone 14's version treated database engineering as PostgreSQL-shaped work; this was a real scope gap, not a stylistic preference, since MySQL and MSSQL have materially different administration tooling, auth mechanisms, and vendor documentation. Every section (Scope, Responsibilities, Decision Framework, Escalation Rules, Output Format, Quality Checklist) rewritten to require the specific engine be stated explicitly, mirroring the multi-vendor discipline already established in `agents/network-architect/AGENT.md`.
+- `knowledge/index.md` — the single-row PostgreSQL entry replaced with a dedicated "Database Engines" section covering all three engines' documentation sources, with the same multi-vendor framing note used for the Network section.
+- `docs/architecture.md` and `README.md` — database-engineer roster row and knowledge bullet updated to name all three engines instead of PostgreSQL alone.
+
+### Next milestone
+- `agents/database-engineer/AGENT.md` still has no dedicated workflow (per Milestone 14's carried-over note) — now that scope spans three engines, a single workflow covering all three (or three engine-specific scenarios within one workflow, matching the multi-scenario pattern used elsewhere) is a stronger candidate than before.
+- No dedicated workflow exists yet for the 10G migration programme's core execution pattern — still open from Milestone 14.
+- Re-run the cross-reference audit — still open from Milestone 14, and now touches an additional file (`agents/database-engineer/AGENT.md` was rewritten, not just extended).

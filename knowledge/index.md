@@ -67,12 +67,21 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 | Red Hat documentation | RHEL-family administration | `linux-platform-engineer` |
 | CIS Benchmarks (Ubuntu/RHEL) | Hardening baselines | `linux-platform-engineer` (implementation), `security-architect` (strategy) |
 
+### Database Engines
+
+| Source | Authoritative for | Primary consuming agent(s) |
+|---|---|---|
+| PostgreSQL official documentation (version-specific) | Configuration, performance tuning, replication, backup/PITR, `pg_hba.conf` LDAP auth | `database-engineer` |
+| MySQL Reference Manual (and MariaDB documentation where MariaDB is specifically in use) | Configuration, performance tuning, replication (binlog-based and Group Replication), backup/PITR, LDAP/PAM auth plugins | `database-engineer` |
+| Microsoft SQL Server documentation (Microsoft Learn) | Configuration, performance tuning, Always On Availability Groups/failover clustering, native backup/PITR, Windows Authentication/AD integration | `database-engineer` |
+
+**Multi-engine note:** this estate runs three relational database engines (PostgreSQL, MySQL, MSSQL) — `agents/database-engineer/AGENT.md` should state explicitly which engine's documentation applies for any given piece of guidance, since administration tooling, authentication mechanisms, and backup approaches differ meaningfully across the three, in the same way `network-architect`'s mixed-vendor network guidance must state which vendor applies.
+
 ### Other platform vendors
 
 | Source | Authoritative for | Primary consuming agent(s) |
 |---|---|---|
 | Wazuh documentation | SIEM agent configuration, rule/decoder authoring, detection coverage strategy | `security-architect` (strategy), relevant platform agent (agent-level config) |
-| PostgreSQL documentation | Database administration, LDAP auth integration | `database-engineer` |
 | Ansible documentation | Playbook/role design, automation standards | Automation Engineer (agent not yet created) |
 | PowerShell documentation (Microsoft Learn) | Language reference underlying `standards/powershell.md` | `windows-infrastructure-engineer`, `vmware-architect` |
 
