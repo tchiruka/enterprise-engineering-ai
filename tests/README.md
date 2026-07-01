@@ -2,6 +2,14 @@
 
 This directory holds the platform's structural validation test suite — the concrete implementation of the "Testing framework" deliverable named in the project's original brief, which had no actual content until Milestone 18.
 
+## Two kinds of testing in this directory
+
+**Structural (`validate-repo.sh`)** — does every file have the sections it's supposed to have, do cross-references resolve, is there stray placeholder text. Fast, mechanical, catches drift.
+
+**Behavioral (`agent-behavior/`)** — given a realistic scenario, does an agent actually *behave* the way its own Decision Framework, Escalation Rules, and Quality Checklist say it should. This can't be checked mechanically — it requires actually adopting the agent persona, producing a response, and scoring that response against a rubric derived from the agent's own stated rules. See `tests/agent-behavior/test-scenarios.md` for the scenario bank and `tests/agent-behavior/results-*.md` for dated results.
+
+Both matter and catch different failure modes: structural testing catches a missing section; behavioral testing catches a Decision Framework that's *present* but doesn't actually constrain the agent's response when a scenario specifically probes it. A behavioral test round already found one genuine platform gap (no defined emergency-change process — see `tests/agent-behavior/results-milestone-19.md`, since resolved via `templates/emergency-change.md`), which no structural check could ever have caught.
+
 ## What's here
 
 `validate-repo.sh` — a dependency-free Bash script (per `standards/bash.md`) that checks:

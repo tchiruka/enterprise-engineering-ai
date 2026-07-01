@@ -146,7 +146,11 @@ REFS=$(grep -rEo '`(agents|workflows|templates|standards|knowledge|examples|docs
 while IFS= read -r ref; do
     [ -z "$ref" ] && continue
     case "$ref" in
-        *"..."*) continue ;;  # generic ellipsis-truncated category references, not real paths
+        *"..."*) continue ;;   # generic ellipsis-truncated category references, not real paths
+        */) continue ;;        # bare directory references (e.g. `tests/agent-behavior/`) used
+                                # generically in prose, not a specific file — same classification
+                                # bug Milestone 13 fixed for `agents/` vs. `agents/X/AGENT.md`;
+                                # applies here to any directory-level reference ending in "/"
     esac
     if [ -f "$ref" ]; then
         continue  # resolves cleanly, no need to log every single one individually

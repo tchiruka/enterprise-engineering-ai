@@ -57,11 +57,11 @@ This repository is being built incrementally, one milestone at a time — see `C
 
 - **9 specialist agents** (`agents/`): Chief Infrastructure Engineer, VMware Architect, Windows Infrastructure Engineer, Linux Platform Engineer, Backup & DR Architect, Security Architect, OpenStack Architect, Network Architect, Database Engineer.
 - **6 full workflows** (`workflows/`): AD Domain Controller Lifecycle (7 scenarios), VMware ESXi/vCenter Upgrade Lifecycle (3 scenarios), Linux CIS Hardening Lifecycle (3 scenarios), Database Engine Lifecycle (3 scenarios, spanning PostgreSQL/MySQL/MSSQL), Network Core Switching Upgrade (2 scenarios), OpenStack VM Migration and Instance Lifecycle (3 scenarios).
-- **5 templates** (`templates/`): Change Request, RCA, Rollback Plan, Incident Report, Programme Charter.
+- **6 templates** (`templates/`): Change Request, RCA, Rollback Plan, Incident Report, Programme Charter, Emergency Change.
 - **6 standards** (`standards/`): PowerShell, Bash, Ansible, Git, Logging, Naming Conventions.
 - **2 playbooks** (`playbooks/`): Incident Response, Disaster Recovery Failover.
 - **4 worked examples** (`examples/`): a clean multi-step change (AD DC swing migration), a failure/rollback path (ESXi upgrade), a programme-level artifact (10G migration programme charter), and a real (not synthetic) incident RCA (SSSD/LDAP firewall interaction).
-- **1 test suite** (`tests/validate-repo.sh`): structural validation covering agent/workflow section completeness, placeholder-text scanning, and cross-reference consistency — see `tests/README.md`.
+- **2 test types** (`tests/`): structural validation (`validate-repo.sh`) and agent behavioral testing (`agent-behavior/`) — the latter already found and helped close a real platform gap (missing emergency-change process).
 - **1 knowledge index** (`knowledge/index.md`) and **1 glossary** (`docs/glossary.md`) tying the above together.
 
 This snapshot will drift out of date the moment the next milestone lands — treat `CHANGELOG.md` as the authoritative record and this section as a periodically-refreshed convenience, not a live-updating source of truth.

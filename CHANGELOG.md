@@ -272,3 +272,24 @@ All notable changes to this platform are tracked here by milestone.
 - `playbooks/_TEMPLATE.md` — still pending a third playbook to justify it (unchanged from Milestone 17).
 - Consider extending `tests/validate-repo.sh` with a check for the multi-vendor/multi-engine explicit-statement discipline `CONTRIBUTING.md` now documents (e.g. confirming `agents/network-architect/AGENT.md` and `agents/database-engineer/AGENT.md` actually name their respective vendors/engines in the Vendor Guidance section) — currently that discipline is documented but not mechanically enforced the way section-completeness now is.
 - The `examples/sssd-ldap-firewall-rca-real-incident/RCA.md` cross-link into `agents/linux-platform-engineer/AGENT.md`/`workflows/linux-cis-hardening-lifecycle/WORKFLOW.md` — still open from Milestone 17.
+
+## [Milestone 19] - 2026-07-01
+
+### Added
+- `tests/agent-behavior/test-scenarios.md` — behavioral test scenario bank, complementing `validate-repo.sh`'s structural checks with actual functional testing: does an agent behave the way its own Decision Framework/Escalation Rules/Quality Checklist claim it does, when given a realistic scenario designed to probe a specific documented behavior. Four scenarios authored: missing engine specification (Database Engineer), missing vendor specification (Network Architect), last-DC/FSMO risk (Windows Infrastructure Engineer), bypass-change-control pressure (Chief Infrastructure Engineer).
+- `tests/agent-behavior/results-milestone-19.md` — first executed round. **All four agents passed**, scored honestly against rubrics derived directly from their own agent files. Scenario 4 surfaced a genuine, previously-undocumented platform gap: no defined emergency-change process existed.
+- `templates/emergency-change.md` — authored the same milestone in direct response to the gap Scenario 4 found, rather than only logging it for later: a compressed, expedited change template requiring a named approver (not just a role), a mandatory rollback statement even under time pressure, and a mandatory full standard CR filed within 24 hours. A concrete example of behavioral testing producing a platform improvement, not just a report.
+
+### Changed
+- `agents/chief-infrastructure-engineer/AGENT.md` — Escalation Rules updated to point bypass-change-control requests at the new emergency-change path rather than a bare refusal.
+- `templates/change-request.md` — header note added pointing to `templates/emergency-change.md` for genuine active emergencies.
+- `tests/README.md` — restructured to explain the two distinct testing types (structural vs. behavioral) and why both are needed.
+- `CONTRIBUTING.md`, `docs/architecture.md`, `README.md` — updated for the new template, the new test type, and updated counts (6 templates, 2 test types).
+
+### Verification
+- `tests/validate-repo.sh` re-run after all changes: **17 passed, 0 failed** — confirms the new template and cross-links didn't introduce structural drift.
+
+### Next milestone
+- Run additional behavioral test rounds against the remaining agents not yet covered (VMware Architect, Linux Platform Engineer, Backup & DR Architect, Security Architect, OpenStack Architect) — only 4 of 9 agents have been behaviorally tested so far.
+- `tests/validate-repo.sh` still doesn't mechanically check the multi-vendor/multi-engine discipline — carried over from Milestone 18, now with two passing behavioral tests (Scenarios 1 and 2) demonstrating the *behavior* is correct even though the *structural* check for it doesn't exist yet; worth deciding whether a structural check is still worth adding given behavioral coverage now exists, or whether that would be redundant effort.
+- Consider whether `templates/emergency-change.md` needs its own worked example in `examples/`, following the pattern established for the other templates, once a real (or realistic) emergency-change scenario is available to document.

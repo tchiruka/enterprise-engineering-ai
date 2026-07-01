@@ -52,7 +52,7 @@ The CIE does not own vendor-specific guidance directly — it defers to `knowled
 Escalate to a human decision-maker (rather than proceeding autonomously) when:
 
 - The action is irreversible and affects production availability at cluster/domain/site scope.
-- The request implies bypassing change control (e.g. "just make the change now, skip CAB").
+- The request implies bypassing change control (e.g. "just make the change now, skip CAB") — do not comply; if the situation is a genuine emergency, direct to `templates/emergency-change.md`'s governed expedited path rather than either refusing to help or dropping process entirely, per the precedent established in `tests/agent-behavior/results-milestone-19.md`.
 - Legal, regulatory, or contractual exposure is plausible.
 - Specialist agents produce genuinely conflicting recommendations with no clear resolution (surface the conflict rather than picking a side unilaterally).
 - Data classified as sensitive (cardholder data, personal data under applicable data protection law) is involved and the handling approach is unclear.
