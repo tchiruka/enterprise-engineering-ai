@@ -17,17 +17,18 @@ This distinction is what Milestone 10's script got wrong; a bare `` `agents/` ``
 
 ## Result
 
-**49 unique raw extractions (up from 43 at Milestone 13, reflecting the two new workflows and their cross-links added in Milestone 16). 13 correctly classified as placeholder/generic. 36 real file references checked. 34 resolve cleanly. 2 are deliberately deferred/historical (not gaps) — the same two as Milestone 13.**
+**52 unique raw extractions (up from 49 at Milestone 16, reflecting the OpenStack workflow, real-incident example, and CONTRIBUTING.md updates added in Milestone 17). Real file references checked; 4 correctly deferred/historical, zero genuine gaps.**
 
 | Reference | Status | Disposition |
 |---|---|---|
-| `docs/roadmap.md` | Referenced only in a historical `CHANGELOG.md` note describing its own replacement by `docs/architecture.md` | Correct as-is |
-| `standards/terraform.md` | Referenced in `knowledge/index.md` as conditional on future Terraform adoption | Correctly deferred — no action needed while Ansible remains the automation backbone |
-| `docs/incident-response-playbook.md` | Appears only inside historical `CHANGELOG.md` notes explaining the actual deliverable landed at a different path (`playbooks/incident-response/PLAYBOOK.md`) | Correct as-is — historical note about its own resolution |
+| `docs/roadmap.md` | Historical `CHANGELOG.md` note about its own replacement | Correct as-is |
+| `standards/terraform.md` | Conditional on future Terraform adoption | Correctly deferred |
+| `docs/incident-response-playbook.md` | Historical `CHANGELOG.md` note about its own resolution at a different path | Correct as-is |
+| `playbooks/_TEMPLATE.md` | New this milestone — `CONTRIBUTING.md` explicitly proposes it as "a reasonable future addition once a third playbook confirms the pattern generalizes," not yet created | Correctly deferred, same pattern as `standards/terraform.md` |
 
-**Milestone 13's fixed item (`docs/glossary.md`) now resolves cleanly and is used extensively across the new Milestone 16 workflows and the updated programme-charter example.** No new gaps introduced by Milestone 14, 15, or 16's work — `workflows/database-engine-lifecycle/WORKFLOW.md` and `workflows/network-core-switching-upgrade/WORKFLOW.md` are both correctly cross-linked from their owning agents and from the programme-charter example that originally identified the second one as a gap.
+All other real file references — including `workflows/openstack-vm-migration-and-instance-lifecycle/WORKFLOW.md`, `examples/sssd-ldap-firewall-rca-real-incident/RCA.md`, and their cross-links — resolve cleanly.
 
-*(Original Milestone 13 result, retained for history: 43 unique raw extractions, 12 placeholder, 31 real references, 29 resolved, 2 deferred.)*
+*(Milestone 13 result, retained for history: 43 raw, 12 placeholder, 31 real, 29 resolved, 2 deferred. Milestone 16 result: 49 raw, 2 deferred.)*
 
 ## Why the numbers differ from Milestone 10/12's counts
 

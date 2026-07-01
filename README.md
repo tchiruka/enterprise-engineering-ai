@@ -56,11 +56,11 @@ enterprise-engineering-ai/
 This repository is being built incrementally, one milestone at a time — see `CHANGELOG.md` for the full history and `docs/architecture.md` for how the pieces below fit together. As of the most recent milestone:
 
 - **9 specialist agents** (`agents/`): Chief Infrastructure Engineer, VMware Architect, Windows Infrastructure Engineer, Linux Platform Engineer, Backup & DR Architect, Security Architect, OpenStack Architect, Network Architect, Database Engineer.
-- **5 full workflows** (`workflows/`): AD Domain Controller Lifecycle (7 scenarios), VMware ESXi/vCenter Upgrade Lifecycle (3 scenarios), Linux CIS Hardening Lifecycle (3 scenarios), Database Engine Lifecycle (3 scenarios, spanning PostgreSQL/MySQL/MSSQL), Network Core Switching Upgrade (2 scenarios).
+- **6 full workflows** (`workflows/`): AD Domain Controller Lifecycle (7 scenarios), VMware ESXi/vCenter Upgrade Lifecycle (3 scenarios), Linux CIS Hardening Lifecycle (3 scenarios), Database Engine Lifecycle (3 scenarios, spanning PostgreSQL/MySQL/MSSQL), Network Core Switching Upgrade (2 scenarios), OpenStack VM Migration and Instance Lifecycle (3 scenarios).
 - **5 templates** (`templates/`): Change Request, RCA, Rollback Plan, Incident Report, Programme Charter.
 - **6 standards** (`standards/`): PowerShell, Bash, Ansible, Git, Logging, Naming Conventions.
 - **2 playbooks** (`playbooks/`): Incident Response, Disaster Recovery Failover.
-- **3 worked examples** (`examples/`): a clean multi-step change (AD DC swing migration), a failure/rollback path (ESXi upgrade), and a programme-level artifact (10G migration programme charter).
+- **4 worked examples** (`examples/`): a clean multi-step change (AD DC swing migration), a failure/rollback path (ESXi upgrade), a programme-level artifact (10G migration programme charter), and a real (not synthetic) incident RCA (SSSD/LDAP firewall interaction).
 - **1 knowledge index** (`knowledge/index.md`) and **1 glossary** (`docs/glossary.md`) tying the above together.
 
 This snapshot will drift out of date the moment the next milestone lands — treat `CHANGELOG.md` as the authoritative record and this section as a periodically-refreshed convenience, not a live-updating source of truth.
