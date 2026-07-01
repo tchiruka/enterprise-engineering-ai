@@ -42,8 +42,15 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 
 | Source | Authoritative for | Primary consuming agent(s) |
 |---|---|---|
-| Switch/router vendor documentation | Physical network configuration | `network-architect` — **specific vendor(s) not yet catalogued; update this row once confirmed** |
+| Juniper Networks TechLibrary (Junos OS documentation) | Juniper switch/router configuration and administration | `network-architect` |
+| Cisco documentation (Cisco IOS/IOS-XE/NX-OS, per platform in use) | Cisco switch/router configuration and administration | `network-architect` |
+| NVIDIA/Mellanox documentation (Cumulus Linux / Onyx, per switch OS in use) | Mellanox switch configuration, high-throughput/low-latency networking | `network-architect` |
+| Supermicro documentation | Supermicro network hardware configuration (where used for switching or as network-adjacent server hardware) | `network-architect` |
+| Fortinet documentation (FortiOS — FortiGate firewalls) | Fortinet firewall configuration, policy, and hardening | `network-architect`, `security-architect` (policy strategy) |
+| SonicWall documentation (SonicOS) | SonicWall firewall configuration, policy, and hardening | `network-architect`, `security-architect` (policy strategy) |
 | PCI-DSS v4.0 Requirement 1 | Network security controls / segmentation | `network-architect`, `security-architect` |
+
+**Multi-vendor note:** this estate runs a mixed network vendor environment (Juniper and Cisco for switching/routing, Mellanox for high-throughput links — relevant to the 10G migration programme, Supermicro for adjacent hardware, and Fortinet/SonicWall for firewalls). `agents/network-architect/AGENT.md` should state explicitly which vendor's equipment is in scope for any given change, since configuration syntax, supported feature sets, and hardening guidance differ meaningfully across these platforms — do not assume guidance from one vendor's documentation applies to another's equipment.
 
 ### OpenStack
 
@@ -74,8 +81,12 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 Internal standards sit in `standards/` and are the house-specific complement to vendor guidance above — vendor docs establish what's *possible and supported*; internal standards establish what's *required in this environment*. Current internal standards:
 
 - `standards/powershell.md` — mandatory PowerShell engineering rules.
+- `standards/bash.md` — mandatory Bash engineering rules.
+- `standards/ansible.md` — mandatory Ansible playbook/role rules.
+- `standards/git.md` — commit message, branching, and repository hygiene rules.
+- `standards/logging.md` — cross-language shared log entry shape for state-changing actions, complementing the language-specific logging requirements in the standards above.
 
-Planned but not yet written: `standards/bash.md`, `standards/ansible.md`, `standards/git.md`, `standards/logging.md`, `standards/naming-conventions.md`.
+Planned but not yet written: `standards/naming-conventions.md`, `standards/terraform.md` (if/when Terraform usage grows beyond the current Ansible-centric automation approach).
 
 ## Compliance framework references
 

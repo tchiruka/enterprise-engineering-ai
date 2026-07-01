@@ -114,3 +114,19 @@ All notable changes to this platform are tracked here by milestone.
 ### Next milestone
 - Network vendor documentation in `knowledge/index.md` still needs the actual vendor/model confirmed — outstanding since Milestone 7.
 - `standards/git.md` and `standards/logging.md`, both listed as "planned but not yet written" in `knowledge/index.md` since Milestone 4.
+
+## [Milestone 9] - 2026-07-01
+
+### Added
+- `standards/git.md` — commit message discipline, branching approach, what belongs/never belongs in version control, `.gitignore` baseline, tagging convention.
+- `standards/logging.md` — cross-language shared log entry shape (timestamp, actor, target, action, outcome, change reference) so PowerShell/Bash/Ansible-driven changes produce correlatable log output across the mixed Windows/Linux/VMware/OpenStack estate; ties to PCI-DSS v4.0 Req. 10.5.1 retention floor and hands off to `security-architect` for SIEM ingestion/strategy.
+
+### Changed
+- `knowledge/index.md` — network vendor documentation row filled in with the estate's actual mixed-vendor environment: Juniper and Cisco (switching/routing), Mellanox (high-throughput links, relevant to the 10G migration programme), Supermicro (network-adjacent hardware), and Fortinet/SonicWall (firewalls). Explicit multi-vendor note added since guidance doesn't transfer across these platforms.
+- `agents/network-architect/AGENT.md` — Vendor Guidance section updated to name the specific vendors in scope and require the agent to state which vendor applies per change, rather than treating the network estate as single-vendor.
+- `knowledge/index.md` internal standards list updated to reflect `standards/bash.md`, `standards/ansible.md`, `standards/git.md`, and `standards/logging.md` all now existing (previously listed as planned).
+
+### Next milestone
+- `standards/naming-conventions.md` — the one remaining standard still referenced as "planned but not yet written."
+- Given the repository now has 8 agents, 2 workflows, 4 templates, 5 standards, a knowledge index, and 2 worked examples, a strong next step is validating cross-references haven't drifted — a consistency pass checking every "→ `agents/X/AGENT.md`" and "`workflows/Y/WORKFLOW.md`" reference across all files actually resolves to a real file with the expected content.
+- Terraform is mentioned as a possible future standard in `knowledge/index.md` but isn't yet in active use in this estate (Ansible is the current automation backbone) — no action needed until that changes, noting it here so it isn't silently forgotten.
