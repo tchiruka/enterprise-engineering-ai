@@ -177,3 +177,18 @@ All notable changes to this platform are tracked here by milestone.
 - Update `docs/cross-reference-audit-milestone-10.md`'s methodology note or supersede it with a Milestone 12 re-audit document, since this pass caught a methodology bug (directory vs. file reference conflation) in the original audit script.
 - `playbooks/` now has its first real content — consider whether other domains warrant a playbook-vs-workflow distinction (e.g. a DR failover playbook alongside `agents/backup-dr-architect/AGENT.md`'s existing DR runbook ownership, to mirror the incident-report/incident-response-playbook pairing established this milestone).
 - The repository is now large enough (8 agents, 3 workflows, 6 templates, 7 standards, 1 playbook, knowledge index, 2 examples) that a `docs/glossary.md` defining platform-specific terms (canary-first, forward-fix contingency, compensating-control register, blast radius) used consistently across files but never centrally defined might be worth adding.
+
+## [Milestone 13] - 2026-07-01
+
+### Added
+- `docs/cross-reference-audit-milestone-13.md` — supersedes `docs/cross-reference-audit-milestone-10.md` with a corrected methodology (explicitly classifying placeholder/generic references separately from real file references, fixing the conflation bug Milestone 12 flagged). Result: clean, with the same two deliberately-deferred references (`docs/roadmap.md`, `standards/terraform.md`) as before, plus `docs/glossary.md` fixed as part of this milestone.
+- `docs/glossary.md` — central definitions for platform-specific terms used across multiple files without ever being defined in one place: blast radius, canary-first, compensating control, forward-fix contingency, layer boundary, recoverability (vs. backup success), risk classification, scope exclusion, trigger condition, MUST/SHOULD/MAY, and programme vs. workflow vs. change.
+- `playbooks/disaster-recovery-failover/PLAYBOOK.md` — second playbook, mirroring the incident-report/incident-response-playbook pairing pattern for `agents/backup-dr-architect/AGENT.md`'s DR runbook ownership: decision-point checklist for failover-vs-troubleshoot, severity/communication reuse from the incident response playbook, a 7-step process (Detect & Confirm → Declare & Notify → Execute Failover → Validate → Communicate Status → Failback → Post-Incident Review), and an explicit note that planned DR tests should exercise this exact process rather than a divergent test-only version.
+
+### Changed
+- `agents/backup-dr-architect/AGENT.md` — Deliverables section now references `playbooks/disaster-recovery-failover/PLAYBOOK.md` as the process DR runbooks are executed under.
+
+### Next milestone
+- The repository now spans 8 agents, 3 workflows, 6 templates, 7 standards, 2 playbooks, a knowledge index, 2 worked examples, and 2 docs beyond the README/architecture pair — worth checking whether `README.md`'s repository structure listing and `docs/architecture.md`'s "where to look for what" section still accurately reflect current contents, since both were written at Milestone 1/6 and haven't been revisited since.
+- `templates/programme-charter.md` has no worked example yet, unlike the change-request/rollback-plan pairing which now has two full examples — the 10G migration programme (`agents/network-architect/AGENT.md`'s named responsibility) or the EOL elimination programme referenced in Tonde's own work history would both be realistic candidates.
+- No agent currently owns database engineering (PostgreSQL, referenced in `knowledge/index.md` since Milestone 4 as "Database Engineer (agent not yet created)") — the remaining named-but-undefined agent gap in the roster.

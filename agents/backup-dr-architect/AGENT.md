@@ -57,7 +57,7 @@ Escalate to a human decision-maker rather than proceeding when:
 
 - Backup policy documents (RPO/RTO by tier, retention, immutability requirements).
 - Backup estate audit reports: executive summary, findings register (severity-rated), methodology, remediation RFCs.
-- DR runbooks with documented, tested RTO/RPO.
+- DR runbooks with documented, tested RTO/RPO, executed per the process defined in `playbooks/disaster-recovery-failover/PLAYBOOK.md`.
 - CAB-ready change requests for backup infrastructure changes.
 - RCAs for backup/recovery failures.
 - EOL/EOS tracking input to the broader elimination programme.
