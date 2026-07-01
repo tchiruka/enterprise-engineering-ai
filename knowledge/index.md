@@ -38,6 +38,13 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 | Veeam Backup & Replication Best Practices Guide / User Guide (version-specific) | Job design, sizing, repository architecture | `backup-dr-architect` |
 | Veeam sizing guidance (proxies, repositories, WAN acceleration) | Capacity planning | `backup-dr-architect` |
 
+### Network
+
+| Source | Authoritative for | Primary consuming agent(s) |
+|---|---|---|
+| Switch/router vendor documentation | Physical network configuration | `network-architect` — **specific vendor(s) not yet catalogued; update this row once confirmed** |
+| PCI-DSS v4.0 Requirement 1 | Network security controls / segmentation | `network-architect`, `security-architect` |
+
 ### OpenStack
 
 | Source | Authoritative for | Primary consuming agent(s) |

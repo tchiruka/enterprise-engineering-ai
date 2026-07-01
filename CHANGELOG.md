@@ -85,3 +85,18 @@ All notable changes to this platform are tracked here by milestone.
 - `templates/rollback-plan.md` — referenced conceptually throughout every workflow's Rollback section, but not yet a standalone template; most workflows currently embed rollback detail inline rather than in a standard format.
 - Network Architect agent — referenced as "if/when defined" by `vmware-architect`, `security-architect`, and `linux-platform-engineer`; still the one specialist domain with no formal agent.
 - A worked example in `examples/` — every agent and workflow exists in isolation so far; a full worked example (e.g. executing the AD DC Lifecycle workflow's Scenario B against a realistic scenario, showing the actual change request and RCA it would produce) would validate that the pieces genuinely compose end to end.
+
+## [Milestone 7] - 2026-07-01
+
+### Added
+- `templates/rollback-plan.md` — standalone rollback plan template (classification, trigger conditions, procedure, time cost, data-loss implications, forward-fix contingency, decision authority), for Medium-risk-and-above changes.
+- Eighth specialist agent: `agents/network-architect/AGENT.md` — owns physical/logical network infrastructure, segmentation (PCI-DSS Req. 1), the active 10G migration programme, and upstream firewall/ACL policy, resolving the "if/when defined" deferrals three other agents already pointed here.
+- `examples/ad-dc-inplace-upgrade-walkthrough/WALKTHROUGH.md` — first worked example, showing `windows-infrastructure-engineer` executing the AD DC Lifecycle workflow end to end: a planning correction caught by the workflow's own Decision Framework (an assumed-invalid in-place upgrade path, correctly redirected to the swing migration scenario), a change request referencing rather than duplicating the workflow, a rollback plan, and an RCA hook for a hypothetical deviation.
+
+### Changed
+- `knowledge/index.md` — added a "Network" section (switch/router vendor documentation placeholder pending confirmation of specific vendor equipment, plus PCI-DSS Req. 1).
+
+### Next milestone
+- Confirm and catalogue the actual network vendor documentation source in `knowledge/index.md` (currently a placeholder — needs the specific switch/router vendor(s) in use).
+- A second worked example demonstrating a failure/rollback path rather than a clean success, since the first example's RCA section was hypothetical rather than fully worked.
+- `standards/bash.md` and `standards/ansible.md` — referenced by `agents/linux-platform-engineer/AGENT.md` since Milestone 6 but not yet created, leaving that agent's primary deliverable format underspecified relative to `standards/powershell.md`'s level of detail for the Windows/VMware agents.
