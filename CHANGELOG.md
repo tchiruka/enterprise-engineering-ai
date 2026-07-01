@@ -192,3 +192,19 @@ All notable changes to this platform are tracked here by milestone.
 - The repository now spans 8 agents, 3 workflows, 6 templates, 7 standards, 2 playbooks, a knowledge index, 2 worked examples, and 2 docs beyond the README/architecture pair — worth checking whether `README.md`'s repository structure listing and `docs/architecture.md`'s "where to look for what" section still accurately reflect current contents, since both were written at Milestone 1/6 and haven't been revisited since.
 - `templates/programme-charter.md` has no worked example yet, unlike the change-request/rollback-plan pairing which now has two full examples — the 10G migration programme (`agents/network-architect/AGENT.md`'s named responsibility) or the EOL elimination programme referenced in Tonde's own work history would both be realistic candidates.
 - No agent currently owns database engineering (PostgreSQL, referenced in `knowledge/index.md` since Milestone 4 as "Database Engineer (agent not yet created)") — the remaining named-but-undefined agent gap in the roster.
+
+## [Milestone 14] - 2026-07-01
+
+### Added
+- Ninth specialist agent: `agents/database-engineer/AGENT.md` — closes the last named-but-undefined agent gap. Owns PostgreSQL administration, performance (with explicit database-vs-infrastructure-layer attribution discipline), LDAP auth integration (database-side, following the estate's established unique-service-account-per-server pattern), and backup/PITR coordinated with `backup-dr-architect`.
+- `examples/10g-network-migration-programme-charter/WALKTHROUGH.md` — third worked example, first to demonstrate `templates/programme-charter.md`. Deliberately honest about a real gap (no dedicated execution workflow exists yet for the programme's core work) rather than presenting an artificially clean example, and applies the canary-first pattern at programme scale (site-by-site) rather than only within a single change.
+
+### Changed
+- `README.md` — "What this is" bullets updated to name all nine agents, three workflows, and current template/standard/playbook counts; stale "Status" section replaced with a "Current contents" snapshot (explicitly flagged as a periodically-refreshed convenience, not a live source of truth — `CHANGELOG.md` remains authoritative).
+- `docs/architecture.md` — agent roster table expanded from six to nine agents (added `linux-platform-engineer`, `openstack-architect`, `network-architect`, `database-engineer`); Workflow Structure section updated to include `linux-cis-hardening-lifecycle` and the canary-first pattern's origin/retrofit; new "Playbooks vs. workflows" section added distinguishing the two artifact types; "Where to look for what" quick reference extended to cover `playbooks/`, `docs/glossary.md`, and `examples/`.
+- `knowledge/index.md` — PostgreSQL row updated to reflect `database-engineer` (previously "agent not yet created").
+
+### Next milestone
+- No dedicated workflow exists yet for the 10G migration programme's core execution pattern (core switching upgrade) — this milestone's worked example surfaced this honestly as a programme risk rather than inventing a workflow to fill the gap artificially; authoring `workflows/network-core-switching-upgrade/WORKFLOW.md` from real or realistic execution detail would close it properly.
+- Re-run the cross-reference audit (per the now-established Milestone 10/13 pattern) given four new/changed files this milestone, including two files (`README.md`, `docs/architecture.md`) that are disproportionately likely to accumulate stale references since they summarize the rest of the repository.
+- `agents/database-engineer/AGENT.md` has no dedicated workflow either (unlike Windows/VMware/Linux, which each have one) — a PostgreSQL upgrade/patching lifecycle workflow would bring database coverage to parity with the other core platform agents.

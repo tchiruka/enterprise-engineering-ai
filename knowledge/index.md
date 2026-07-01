@@ -72,7 +72,7 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 | Source | Authoritative for | Primary consuming agent(s) |
 |---|---|---|
 | Wazuh documentation | SIEM agent configuration, rule/decoder authoring, detection coverage strategy | `security-architect` (strategy), relevant platform agent (agent-level config) |
-| PostgreSQL documentation | Database administration, LDAP auth integration | Database Engineer (agent not yet created) |
+| PostgreSQL documentation | Database administration, LDAP auth integration | `database-engineer` |
 | Ansible documentation | Playbook/role design, automation standards | Automation Engineer (agent not yet created) |
 | PowerShell documentation (Microsoft Learn) | Language reference underlying `standards/powershell.md` | `windows-infrastructure-engineer`, `vmware-architect` |
 
