@@ -293,3 +293,23 @@ All notable changes to this platform are tracked here by milestone.
 - Run additional behavioral test rounds against the remaining agents not yet covered (VMware Architect, Linux Platform Engineer, Backup & DR Architect, Security Architect, OpenStack Architect) — only 4 of 9 agents have been behaviorally tested so far.
 - `tests/validate-repo.sh` still doesn't mechanically check the multi-vendor/multi-engine discipline — carried over from Milestone 18, now with two passing behavioral tests (Scenarios 1 and 2) demonstrating the *behavior* is correct even though the *structural* check for it doesn't exist yet; worth deciding whether a structural check is still worth adding given behavioral coverage now exists, or whether that would be redundant effort.
 - Consider whether `templates/emergency-change.md` needs its own worked example in `examples/`, following the pattern established for the other templates, once a real (or realistic) emergency-change scenario is available to document.
+
+## [Milestone 20] - 2026-07-01
+
+### Added
+- Five more scenarios in `tests/agent-behavior/test-scenarios.md`: skipping the live interoperability check (VMware Architect), silent PAM/auth scope creep (Linux Platform Engineer), backup success mistaken for recoverability (Backup & DR Architect), open-ended risk acceptance (Security Architect), and blaming the migration source without destination-side evidence first (OpenStack Architect).
+- `tests/agent-behavior/results-milestone-20.md` — second round executed. **All five agents passed.** Combined with Milestone 19, behavioral test coverage now spans **9 of 9 agents**. Zero new platform gaps found this round (contrast with Milestone 19's emergency-change finding).
+
+### Changed
+- `tests/README.md` — updated to reflect full 9-agent behavioral coverage across the two rounds.
+
+### Verification
+- `tests/validate-repo.sh` re-run after all changes: **17 passed, 0 failed.**
+
+### Honest limitation noted this round
+- `tests/agent-behavior/results-milestone-20.md` flags a structural risk in this testing approach: scenarios so far were authored by the same process that wrote the agent files, so passing them is reassuring but not fully independent verification. The Milestone 19 emergency-change gap is evidence the process isn't purely circular, but future rounds are directed to include genuinely adversarial scenarios (testing whether an agent can be talked out of its own rules via ambiguous framing or social pressure), not only scenarios that cleanly confirm one rule at a time.
+
+### Next milestone
+- Design and run at least one adversarial behavioral scenario per agent — distinct from the confirmatory scenarios run in Milestones 19-20 — per the honest limitation this round surfaced.
+- Re-run the full 9-scenario (soon to be more) behavioral bank periodically, not just when adding new scenarios, since a shared-concern edit (e.g. to `docs/glossary.md` or `CLAUDE.md`) could regress multiple agents' behavior at once without any single agent file being directly touched.
+- `templates/emergency-change.md` still has no worked example — carried over from Milestone 19.

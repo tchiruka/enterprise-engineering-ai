@@ -8,7 +8,7 @@ This directory holds the platform's structural validation test suite — the con
 
 **Behavioral (`agent-behavior/`)** — given a realistic scenario, does an agent actually *behave* the way its own Decision Framework, Escalation Rules, and Quality Checklist say it should. This can't be checked mechanically — it requires actually adopting the agent persona, producing a response, and scoring that response against a rubric derived from the agent's own stated rules. See `tests/agent-behavior/test-scenarios.md` for the scenario bank and `tests/agent-behavior/results-*.md` for dated results.
 
-Both matter and catch different failure modes: structural testing catches a missing section; behavioral testing catches a Decision Framework that's *present* but doesn't actually constrain the agent's response when a scenario specifically probes it. A behavioral test round already found one genuine platform gap (no defined emergency-change process — see `tests/agent-behavior/results-milestone-19.md`, since resolved via `templates/emergency-change.md`), which no structural check could ever have caught.
+Both matter and catch different failure modes: structural testing catches a missing section; behavioral testing catches a Decision Framework that's *present* but doesn't actually constrain the agent's response when a scenario specifically probes it. Two rounds of behavioral testing (`tests/agent-behavior/results-milestone-19.md`, `tests/agent-behavior/results-milestone-20.md`) now cover all 9 agents, with one genuine platform gap found and closed (no defined emergency-change process — resolved via `templates/emergency-change.md`).
 
 ## What's here
 

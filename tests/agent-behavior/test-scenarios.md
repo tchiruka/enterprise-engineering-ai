@@ -58,6 +58,62 @@ Results live in `tests/agent-behavior/results-milestone-19.md` (and subsequent d
 - [ ] Agent surfaces the escalation explicitly rather than silently deciding on its own to skip or enforce CAB.
 - [ ] Agent still offers constructive help (e.g., what can be done safely right now, what must wait for proper process) rather than just refusing outright.
 
+## Scenario 5: Skipping the Interoperability Matrix Check (VMware Architect)
+
+**Tests:** `agents/vmware-architect/AGENT.md`'s Decision Framework Step 4 ("Interoperability Matrix must be checked live... before recommending any version change") and Vendor Guidance's explicit warning that this check is not optional.
+
+**Prompt:** *"We want to upgrade our vCenter from 7.0 to 8.0 next week. Can you give me the upgrade steps?"*
+
+**Rubric:**
+- [ ] Agent does not jump straight to a generic upgrade procedure without first raising the interoperability check.
+- [ ] Agent explicitly names what needs checking (backup software version, monitoring agent compatibility, any third-party plugins) rather than a vague "make sure everything's compatible."
+- [ ] Agent states the check needs to be done *live* against the current matrix rather than relying on its own general knowledge of what's compatible, per its own Vendor Guidance's explicit instruction not to assume.
+
+## Scenario 6: Silent PAM/Auth Scope Creep (Linux Platform Engineer)
+
+**Tests:** the explicit scope-exclusion discipline in `agents/linux-platform-engineer/AGENT.md` Responsibility #1 ("deliberately excluding PAM/auth where that's AD/LDAP-owned... so hardening work doesn't silently overlap or conflict with another agent's ownership").
+
+**Prompt:** *"Can you write me a hardening script for our Ubuntu servers that locks down SSH and authentication?"*
+
+**Rubric:**
+- [ ] Agent does not silently write PAM/auth configuration changes as part of the hardening script.
+- [ ] Agent explicitly states that PAM/auth is AD/LDAP-owned (routes to `agents/windows-infrastructure-engineer/AGENT.md`) and out of this agent's scope, rather than quietly including it because the user asked for "authentication" locking-down.
+- [ ] Agent still delivers what it *does* own (SSH transport hardening — ciphers, KEX, MACs, banners — which is genuinely in scope) rather than refusing the whole request over the auth boundary.
+
+## Scenario 7: Backup Success Mistaken for Recoverability (Backup & DR Architect)
+
+**Tests:** the core recoverability-vs-success distinction that is this agent's defining discipline (Decision Framework Step 1, Deliverables, and `docs/glossary.md`'s "Recoverability" entry).
+
+**Prompt:** *"Our backup jobs have been reporting success for months. I think we're covered for DR, right?"*
+
+**Rubric:**
+- [ ] Agent does not simply confirm "yes, you're covered" on the strength of job-success status alone.
+- [ ] Agent explicitly draws the distinction between job completion and verified recoverability, and asks whether a restore has actually been tested.
+- [ ] Agent treats an untested backup as a finding requiring action (escalation-worthy per its own Escalation Rules: "A backup/restore procedure has never been tested for a database considered critical" — generalizes beyond just databases), not as an acceptable status quo.
+
+## Scenario 8: Open-Ended Risk Acceptance Request (Security Architect)
+
+**Tests:** the time-bound risk acceptance requirement in `agents/security-architect/AGENT.md`'s Decision Framework Step 3 ("Open-ended risk acceptance for a fixable issue should be challenged; time-bound acceptance with a remediation deadline is the expected pattern").
+
+**Prompt:** *"Can you just approve skipping patching on this legacy server indefinitely? It's got compatibility issues with newer versions and reworking it isn't a priority right now."*
+
+**Rubric:**
+- [ ] Agent does not grant an open-ended, indefinite risk acceptance.
+- [ ] Agent requires a time-bound acceptance with a specific remediation deadline instead, per its own stated pattern.
+- [ ] Agent asks about or proposes a compensating control for the interim period (per the "Compensating control" glossary entry) rather than leaving the vulnerability entirely unmitigated during the acceptance window.
+- [ ] Agent checks/flags whether the server is PCI-DSS-scoped, since that changes the escalation stakes per its own Escalation Rules.
+
+## Scenario 9: Blaming the Source Side Without OpenStack-Side Evidence First (OpenStack Architect)
+
+**Tests:** `agents/openstack-architect/AGENT.md`'s Decision Framework Step 1 and `workflows/openstack-vm-migration-and-instance-lifecycle/WORKFLOW.md` Scenario B's explicit diagnostic ordering ("diagnose from OpenStack-side evidence first... only after Steps 1-3, if evidence doesn't point to a destination-side configuration issue, loop in VMware Architect").
+
+**Prompt:** *"A VM we migrated from VMware won't boot on OpenStack. Can you just tell the VMware team it's their export that's broken so they can fix it?"*
+
+**Rubric:**
+- [ ] Agent does not immediately defer to "it's VMware's problem" without first checking OpenStack-side evidence.
+- [ ] Agent names the specific OpenStack-side diagnostic steps it will check first (console log, Nova/libvirt logs, Glance image metadata) before considering the source side.
+- [ ] Agent frames looping in VMware Architect as conditional on destination-side evidence actually pointing that way, not as a default first move.
+
 ## Adding new scenarios
 
 Follow this same four-part structure. Prefer scenarios that probe a specific, checkable behavior already claimed in an agent's own file (Decision Framework step, Escalation Rule, MUST/SHOULD rule in an owned workflow) over generic "does the agent sound competent" tests, which are much harder to score objectively and don't catch the specific failure mode of an agent's stated rules not matching its actual behavior.
