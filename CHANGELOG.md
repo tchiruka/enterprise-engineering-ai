@@ -343,3 +343,23 @@ All notable changes to this platform are tracked here by milestone.
 - A three-turn round (pushback → pushback → does the position still hold) as the natural next escalation, per `results-milestone-22.md`'s own recommendation — testing whether "holds for one follow-up" generalizes or whether there's an undiscovered pressure threshold.
 - Design at least one more scenario in the shape of Scenario 18 (a genuine good-faith compromise disguised as pushback) deliberately, to keep testing discernment rather than only resistance.
 - `templates/emergency-change.md` still has no worked example — carried over from Milestone 19-21.
+
+## [Milestone 23] - 2026-07-01
+
+### Added
+- `tools/skill-source/SKILL.md` — the authored router/triage layer for using this entire platform as a single Claude Skill (`enterprise-engineering-platform`), rather than pasting individual `AGENT.md` files into chat manually. Contains the platform-wide operating rules (always in context when the skill triggers), a triage table mapping each domain to its agent and workflow, and pointers into the bundled reference content.
+- `tools/build-skill.sh` — generates the skill's `references/` content **fresh from the live repository** (agents, workflows, templates, standards, playbooks, knowledge index, glossary, architecture doc) rather than maintaining a hand-duplicated copy that would drift — same anti-drift discipline as `tests/validate-repo.sh` and the cross-reference audits, applied to the skill-packaging problem specifically. Verified working: built a 33-file bundle matching a manually-assembled reference build exactly.
+- `tools/README.md` — explains why the skill content is generated rather than hand-maintained, how to build and package it (including the description-length validation gotcha — 1024-character hard limit, which the first packaging attempt hit and required trimming twice to clear), and when `tools/skill-source/SKILL.md` itself needs a manual edit versus when a rebuild is sufficient.
+- Packaged and delivered `enterprise-engineering-platform.skill` (115KB, 33 files) as a downloadable artifact, validated successfully through the skill-creator tooling's own validator before packaging.
+
+### Changed
+- `docs/architecture.md` and `README.md` — cross-linked to the new skill-packaging tooling.
+
+### Verification
+- `tests/validate-repo.sh` re-run after all changes: **17 passed, 0 failed.**
+- Skill bundle validated by the skill-creator tooling's `quick_validate` step before packaging (required fixing an invalid YAML apostrophe-escaping artifact and trimming the description from 1846 to 975 characters to clear the 1024-character limit).
+
+### Next milestone
+- A three-turn adversarial testing round — still open from Milestone 22.
+- Consider whether `tools/skill-source/SKILL.md`'s triage table should be mechanically checked against the actual agent roster (e.g. via `tests/validate-repo.sh`) so it can't silently go stale the way `README.md`'s and `docs/architecture.md`'s snapshots already have once before (Milestone 14's refresh).
+- `templates/emergency-change.md` still has no worked example — carried over from Milestone 19-22.

@@ -69,6 +69,7 @@ The repository has grown by this consistent milestone pattern: identify a gap (a
 - **"I need to see how the pieces actually compose end to end"** → `examples/`, including at least one deliberately-worked failure/rollback path, not just clean successes.
 - **"I need to know if what I've built is structurally consistent with the rest of the repo"** → `tests/validate-repo.sh` — run it rather than manually re-deriving the cross-reference audit.
 - **"I need to know if an agent actually behaves the way its own rules say it should"** → `tests/agent-behavior/` — structural validation can't check this; it requires running a real scenario against the agent and scoring the response.
+- **"I want to use this platform as a Claude Skill instead of pasting AGENT.md files manually"** → `tools/build-skill.sh` + `tools/README.md` — builds a skill bundle from live repo content; see that README for packaging into a distributable `.skill` file.
 - **"I need to know what vendor documentation backs this claim"** → `knowledge/index.md`.
 - **"I need to know the engineering rules for this script"** → `standards/`.
 - **"I need to know what's been built and what's next"** → `CHANGELOG.md`.

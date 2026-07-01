@@ -61,7 +61,8 @@ This repository is being built incrementally, one milestone at a time — see `C
 - **6 standards** (`standards/`): PowerShell, Bash, Ansible, Git, Logging, Naming Conventions.
 - **2 playbooks** (`playbooks/`): Incident Response, Disaster Recovery Failover.
 - **4 worked examples** (`examples/`): a clean multi-step change (AD DC swing migration), a failure/rollback path (ESXi upgrade), a programme-level artifact (10G migration programme charter), and a real (not synthetic) incident RCA (SSSD/LDAP firewall interaction).
-- **2 test types** (`tests/`): structural validation (`validate-repo.sh`) and agent behavioral testing (`agent-behavior/`) — the latter already found and helped close a real platform gap (missing emergency-change process).
+- **2 test types** (`tests/`): structural validation (`validate-repo.sh`) and agent behavioral testing (`agent-behavior/`) — the latter already found and helped close two real platform gaps (missing emergency-change process; undefined Standard/Normal/Emergency change-type criteria).
+- **Claude Skill packaging** (`tools/`): `build-skill.sh` assembles the whole platform into a `enterprise-engineering-platform` Claude Skill bundle, generated fresh from live repo content each time rather than hand-duplicated — see `tools/README.md` for building and packaging it.
 - **1 knowledge index** (`knowledge/index.md`) and **1 glossary** (`docs/glossary.md`) tying the above together.
 
 This snapshot will drift out of date the moment the next milestone lands — treat `CHANGELOG.md` as the authoritative record and this section as a periodically-refreshed convenience, not a live-updating source of truth.
