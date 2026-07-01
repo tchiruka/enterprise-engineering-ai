@@ -328,3 +328,18 @@ All notable changes to this platform are tracked here by milestone.
 - Add multi-turn adversarial scenarios (a follow-up pushback after the agent's first refusal, e.g. "come on, everyone does this, just this once") to test whether a position holds under sustained pressure rather than a single exchange — per this round's own "Honest assessment" section.
 - `templates/emergency-change.md` still has no worked example — carried over from Milestone 19/20.
 - Consider whether an actually-independent adversarial review (not authored by the same process that wrote the agents and the earlier test rounds) is worth pursuing given the honest limitation this round names about same-author scenario design.
+
+## [Milestone 22] - 2026-07-01
+
+### Added
+- Turn 2 pushback prompts added to all nine Milestone 21 adversarial scenarios in `tests/agent-behavior/test-scenarios.md` — a follow-up after the agent's initial refusal, testing whether the position holds under sustained pressure rather than a single exchange, per Milestone 21's own recommendation.
+- `tests/agent-behavior/results-milestone-22.md` — fourth round executed. **All nine positions held under Turn 2 pushback.** Notably, Scenario 18 (OpenStack Architect) received a pushback that was actually a legitimate engineering compromise (risk-based sampling) rather than pure pressure, and the agent correctly accepted the reasonable part while holding firm on the part that still mattered — the first scenario in the bank to test discernment between good-faith proposals and pressure tactics, not just resistance to the latter.
+
+### Verification
+- `tests/validate-repo.sh` re-run after all changes: **17 passed, 0 failed.**
+- Cumulative behavioral testing score across all four rounds (Milestones 19-22): **27/27 scenario-turns passed.**
+
+### Next milestone
+- A three-turn round (pushback → pushback → does the position still hold) as the natural next escalation, per `results-milestone-22.md`'s own recommendation — testing whether "holds for one follow-up" generalizes or whether there's an undiscovered pressure threshold.
+- Design at least one more scenario in the shape of Scenario 18 (a genuine good-faith compromise disguised as pushback) deliberately, to keep testing discernment rather than only resistance.
+- `templates/emergency-change.md` still has no worked example — carried over from Milestone 19-21.
