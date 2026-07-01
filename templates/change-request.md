@@ -12,12 +12,22 @@
 | Title | Short, specific — not "Server maintenance" but "In-place OS upgrade: PRD-DC03 (sec.v.co.zw) Server 2016 → 2022" |
 | Requested by | |
 | Change owner / implementer | |
-| Change type | Standard / Normal / Emergency |
+| Change type | Standard / Normal / Emergency — see classification criteria below |
 | Risk classification | Low / Medium / High — with justification |
 | Affected system(s)/CI(s) | Reference the CMDB CI IDs |
 | Proposed date/time | |
 | Maintenance window duration | |
 | CAB approval required? | Yes/No — and why |
+
+## Change Type Classification
+
+> Added following `tests/agent-behavior/results-milestone-21.md` (Scenario 16), which found this platform had a `Change type` field with three labels but no defined criteria for which applies — leaving agents to improvise the distinction ad hoc.
+
+- **Standard** — pre-approved, low-risk, repeatable change with a documented, unchanging procedure (e.g. a routine firewall rule between two already-mutually-trusted internal hosts with no PCI-DSS segmentation relevance, following an exact pattern used before). Requires: confirmation the change matches an established Standard-change pattern exactly (no deviation), and confirmation it does not touch PCI-DSS-scoped systems or segmentation. Does **not** require full CAB review each time, but still requires this record to be filed and does **not** exempt the change from `templates/rollback-plan.md` if state-changing. If any doubt exists about whether a change truly matches an established low-risk pattern, classify it as Normal instead — Standard is earned by a track record of a specific, narrow, repeatable pattern, not claimed because a change sounds small.
+- **Normal** — the default classification for anything that doesn't meet Standard's narrow criteria and isn't a genuine active emergency. Full CAB review applies.
+- **Emergency** — active, material production impact right now, where waiting for standard CAB timing would materially worsen that impact. Use `templates/emergency-change.md` instead of this template, not this template with "Emergency" written in the Change type field — the emergency path has its own compressed structure with mandatory retroactive full-CR follow-up.
+
+**MUST:** "the requester says it's small" is not sufficient justification for Standard classification on its own — confirm against the two criteria above (exact pattern match, no PCI-DSS scope touch) explicitly before applying it, per the precedent in `tests/agent-behavior/results-milestone-21.md`.
 
 ## Overview
 

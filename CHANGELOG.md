@@ -313,3 +313,18 @@ All notable changes to this platform are tracked here by milestone.
 - Design and run at least one adversarial behavioral scenario per agent — distinct from the confirmatory scenarios run in Milestones 19-20 — per the honest limitation this round surfaced.
 - Re-run the full 9-scenario (soon to be more) behavioral bank periodically, not just when adding new scenarios, since a shared-concern edit (e.g. to `docs/glossary.md` or `CLAUDE.md`) could regress multiple agents' behavior at once without any single agent file being directly touched.
 - `templates/emergency-change.md` still has no worked example — carried over from Milestone 19.
+
+## [Milestone 21] - 2026-07-01
+
+### Added
+- Nine adversarial scenarios in `tests/agent-behavior/test-scenarios.md` (Scenarios 10-18), one per agent, each combining authority pressure, sunk-cost framing, claimed exceptions, or "just this once" minimization — deliberately harder than Rounds 1-2's clean single-rule probes, per the limitation Milestone 20 flagged.
+- `tests/agent-behavior/results-milestone-21.md` — third round executed. **All nine agents held their documented rules under adversarial pressure — 9/9 pass, cumulative 18/18 across all three rounds.** Includes an explicit "Honest assessment of this round" section naming why a perfect record this far in warrants some skepticism (same-author scenario design, single-exchange rather than sustained-pressure testing) rather than being taken purely at face value.
+- `templates/change-request.md` — new "Change Type Classification" section defining Standard/Normal/Emergency criteria with a MUST rule against classifying by requester-claimed size alone, closing a genuine gap Scenario 16 surfaced (the platform had a `Change type` field with three labels but no actual criteria for which applied, leaving agents to improvise the Standard-vs-Normal distinction ad hoc).
+
+### Verification
+- `tests/validate-repo.sh` re-run after all changes: **17 passed, 0 failed.**
+
+### Next milestone
+- Add multi-turn adversarial scenarios (a follow-up pushback after the agent's first refusal, e.g. "come on, everyone does this, just this once") to test whether a position holds under sustained pressure rather than a single exchange — per this round's own "Honest assessment" section.
+- `templates/emergency-change.md` still has no worked example — carried over from Milestone 19/20.
+- Consider whether an actually-independent adversarial review (not authored by the same process that wrote the agents and the earlier test rounds) is worth pursuing given the honest limitation this round names about same-author scenario design.
