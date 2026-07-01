@@ -130,3 +130,17 @@ All notable changes to this platform are tracked here by milestone.
 - `standards/naming-conventions.md` — the one remaining standard still referenced as "planned but not yet written."
 - Given the repository now has 8 agents, 2 workflows, 4 templates, 5 standards, a knowledge index, and 2 worked examples, a strong next step is validating cross-references haven't drifted — a consistency pass checking every "→ `agents/X/AGENT.md`" and "`workflows/Y/WORKFLOW.md`" reference across all files actually resolves to a real file with the expected content.
 - Terraform is mentioned as a possible future standard in `knowledge/index.md` but isn't yet in active use in this estate (Ansible is the current automation backbone) — no action needed until that changes, noting it here so it isn't silently forgotten.
+
+## [Milestone 10] - 2026-07-01
+
+### Added
+- `standards/naming-conventions.md` — repository structure naming (agents/workflows/templates/standards/examples slug patterns), cross-language variable naming pointer, and an explicit statement that this platform respects existing estate host naming rather than prescribing a new scheme.
+- `docs/cross-reference-audit-milestone-10.md` — first full cross-reference consistency audit: 86 unique repository-path references extracted and checked across every Markdown file. One genuine gap found and fixed (`standards/naming-conventions.md`, this milestone); three references confirmed correctly labeled as deliberately deferred (`standards/terraform.md`, `templates/incident-report.md`, a historical `docs/roadmap.md` note); zero stale/broken references found otherwise.
+
+### Changed
+- `knowledge/index.md` internal standards list updated — `standards/naming-conventions.md` moved from "planned" to the confirmed-existing list.
+
+### Next milestone
+- Re-run the cross-reference audit periodically per the recommendation in `docs/cross-reference-audit-milestone-10.md` (every 3-4 milestones or before any release/tag) rather than treating this as a one-time exercise.
+- Second non-AD, non-VMware workflow — candidate: a Linux CIS hardening lifecycle workflow (build → harden → validate → periodic re-audit), giving `agents/linux-platform-engineer/AGENT.md` the same workflow-backed depth the Windows and VMware agents already have.
+- `templates/incident-report.md` — still a "candidate" per `knowledge/index.md`'s NIST SP 800-61 note; worth revisiting now that `standards/logging.md` exists and could feed it directly.

@@ -85,8 +85,9 @@ Internal standards sit in `standards/` and are the house-specific complement to 
 - `standards/ansible.md` — mandatory Ansible playbook/role rules.
 - `standards/git.md` — commit message, branching, and repository hygiene rules.
 - `standards/logging.md` — cross-language shared log entry shape for state-changing actions, complementing the language-specific logging requirements in the standards above.
+- `standards/naming-conventions.md` — repository structure and cross-language naming pointer standard.
 
-Planned but not yet written: `standards/naming-conventions.md`, `standards/terraform.md` (if/when Terraform usage grows beyond the current Ansible-centric automation approach).
+Planned but not yet written: `standards/terraform.md` (if/when Terraform usage grows beyond the current Ansible-centric automation approach).
 
 ## Compliance framework references
 
