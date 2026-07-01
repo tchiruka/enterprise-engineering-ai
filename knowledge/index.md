@@ -49,9 +49,9 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 
 | Source | Authoritative for | Primary consuming agent(s) |
 |---|---|---|
-| Ubuntu Server documentation | Ubuntu-specific administration | Linux Platform Engineer (agent not yet created) |
-| Red Hat documentation | RHEL-family administration | Linux Platform Engineer (agent not yet created) |
-| CIS Benchmarks (Ubuntu/RHEL) | Hardening baselines | Linux Platform Engineer (agent not yet created), `security-architect` |
+| Ubuntu Server documentation | Ubuntu-specific administration | `linux-platform-engineer` |
+| Red Hat documentation | RHEL-family administration | `linux-platform-engineer` |
+| CIS Benchmarks (Ubuntu/RHEL) | Hardening baselines | `linux-platform-engineer` (implementation), `security-architect` (strategy) |
 
 ### Other platform vendors
 

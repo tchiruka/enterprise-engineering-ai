@@ -69,3 +69,19 @@ All notable changes to this platform are tracked here by milestone.
 - Linux Platform Engineer agent (referenced across `backup-dr-architect`, `openstack-architect`, and `knowledge/index.md` as "not yet created" — the remaining gap in core platform coverage alongside Windows/VMware/OpenStack).
 - `templates/programme-charter.md` (referenced by `chief-infrastructure-engineer` since Milestone 1 but not yet created) and `templates/rollback-plan.md`.
 - `docs/architecture.md` — a platform-level document explaining how all six agents, two workflows, and supporting templates/standards fit together, useful now that the repository has enough surface area to need an orientation document beyond the README.
+
+## [Milestone 6] - 2026-07-01
+
+### Added
+- Seventh specialist agent: `agents/linux-platform-engineer/AGENT.md` — the Linux-side counterpart to `windows-infrastructure-engineer`, owning Ubuntu/RHEL/Debian administration, CIS hardening (idempotent scripts with documented scope exclusions), SSSD/LDAP client-side auth, and host firewall configuration. Closes the last major platform-coverage gap alongside Windows/VMware/OpenStack.
+- `templates/programme-charter.md` — governance artifact for multi-phase, multi-workstream initiatives, sitting above individual change requests. Referenced by `agents/chief-infrastructure-engineer/AGENT.md` since Milestone 1 but not created until now.
+- `docs/architecture.md` — platform-level orientation document: agent roster and boundaries, workflow structure pattern, knowledge index role, compliance framing philosophy, and a "where to look for what" quick reference.
+
+### Changed
+- `knowledge/index.md` Linux/Ubuntu/Red Hat/CIS rows updated to reflect `linux-platform-engineer` (previously "agent not yet created").
+- `README.md` Status section now points to `docs/architecture.md` instead of the placeholder `docs/roadmap.md` reference.
+
+### Next milestone
+- `templates/rollback-plan.md` — referenced conceptually throughout every workflow's Rollback section, but not yet a standalone template; most workflows currently embed rollback detail inline rather than in a standard format.
+- Network Architect agent — referenced as "if/when defined" by `vmware-architect`, `security-architect`, and `linux-platform-engineer`; still the one specialist domain with no formal agent.
+- A worked example in `examples/` — every agent and workflow exists in isolation so far; a full worked example (e.g. executing the AD DC Lifecycle workflow's Scenario B against a realistic scenario, showing the actual change request and RCA it would produce) would validate that the pieces genuinely compose end to end.

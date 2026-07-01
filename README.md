@@ -52,7 +52,7 @@ enterprise-engineering-ai/
 
 ## Status
 
-This repository is being built incrementally, one milestone at a time. See `CHANGELOG.md` for progress and `docs/roadmap.md` (once created) for what's next.
+This repository is being built incrementally, one milestone at a time. See `CHANGELOG.md` for progress and `docs/architecture.md` for how the agents, workflows, templates, and knowledge index fit together.
 
 ## Getting started
 
