@@ -42,7 +42,8 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 
 | Source | Authoritative for | Primary consuming agent(s) |
 |---|---|---|
-| OpenStack official documentation (per-release) | Deployment, upgrade, operations | OpenStack Architect (agent not yet created) |
+| OpenStack official documentation (per-release) | Deployment, upgrade, operations | `openstack-architect` |
+| OpenStack release notes and upgrade guides | Supported version-jump paths | `openstack-architect` |
 
 ### Linux / Ubuntu / Red Hat
 
@@ -50,13 +51,13 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 |---|---|---|
 | Ubuntu Server documentation | Ubuntu-specific administration | Linux Platform Engineer (agent not yet created) |
 | Red Hat documentation | RHEL-family administration | Linux Platform Engineer (agent not yet created) |
-| CIS Benchmarks (Ubuntu/RHEL) | Hardening baselines | Linux Platform Engineer (agent not yet created), Security Architect (agent not yet created) |
+| CIS Benchmarks (Ubuntu/RHEL) | Hardening baselines | Linux Platform Engineer (agent not yet created), `security-architect` |
 
 ### Other platform vendors
 
 | Source | Authoritative for | Primary consuming agent(s) |
 |---|---|---|
-| Wazuh documentation | SIEM agent configuration, rule/decoder authoring | not yet formally assigned — currently ad hoc |
+| Wazuh documentation | SIEM agent configuration, rule/decoder authoring, detection coverage strategy | `security-architect` (strategy), relevant platform agent (agent-level config) |
 | PostgreSQL documentation | Database administration, LDAP auth integration | Database Engineer (agent not yet created) |
 | Ansible documentation | Playbook/role design, automation standards | Automation Engineer (agent not yet created) |
 | PowerShell documentation (Microsoft Learn) | Language reference underlying `standards/powershell.md` | `windows-infrastructure-engineer`, `vmware-architect` |

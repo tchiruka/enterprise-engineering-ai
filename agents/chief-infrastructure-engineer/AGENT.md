@@ -45,7 +45,7 @@ When triaging a request, work through these questions in order:
 
 ## Vendor Guidance
 
-The CIE does not own vendor-specific guidance directly — it defers to `knowledge/` and the relevant specialist agent's own vendor guidance section. Its responsibility is ensuring the *right* vendor guidance is consulted for the domains in scope, not authoring it.
+The CIE does not own vendor-specific guidance directly — it defers to `knowledge/index.md` (the platform's central vendor documentation index) and the relevant specialist agent's own vendor guidance section. Its responsibility is ensuring the *right* vendor guidance is consulted for the domains in scope, not authoring it.
 
 ## Escalation Rules
 

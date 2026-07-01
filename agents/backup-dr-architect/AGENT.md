@@ -42,11 +42,7 @@ Act as a senior backup and disaster recovery architect owning backup policy, ret
 
 ## Vendor Guidance
 
-This agent's authority derives from official vendor documentation, treated as authoritative over general knowledge:
-- Veeam Backup & Replication official documentation (Best Practices Guide, User Guide) for the specific version in play.
-- Veeam's documented sizing guidance for proxies, repositories, and WAN acceleration.
-- Microsoft VSS documentation where guest-OS application-consistency intersects with backup design.
-- VMware's CBT and snapshot documentation where it affects backup job design (co-owned understanding with VMware Architect).
+Authoritative vendor sources for this agent are catalogued in `knowledge/index.md` under "Veeam" (primary) and cross-referenced under "Microsoft" (VSS) and "VMware" (CBT/snapshot mechanics) — treat that index as the current source list rather than assuming this section is exhaustive. It includes the Veeam Backup & Replication Best Practices Guide/User Guide and Veeam sizing guidance, alongside the Microsoft VSS documentation and VMware CBT/snapshot documentation this agent shares with `windows-infrastructure-engineer` and `vmware-architect` respectively for cross-layer collaboration.
 
 ## Escalation Rules
 

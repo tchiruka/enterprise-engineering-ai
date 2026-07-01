@@ -54,3 +54,18 @@ All notable changes to this platform are tracked here by milestone.
 - Security Architect agent (referenced by multiple existing agents for escalation/collaboration but not yet defined).
 - OpenStack Architect agent (referenced in scope boundaries by `vmware-architect` but not yet defined; directly relevant given the active VMware-to-OpenStack migration work).
 - Retrofit existing agent files (`chief-infrastructure-engineer`, `vmware-architect`, `windows-infrastructure-engineer`, `backup-dr-architect`) to reference `knowledge/index.md` directly rather than restating vendor source lists inline, keeping the index as the single source of truth going forward.
+
+## [Milestone 5] - 2026-07-01
+
+### Added
+- Fifth specialist agent: `agents/security-architect/AGENT.md` — owns cross-cutting PCI-DSS/ISO 27001 scope determination, vulnerability management programme, SIEM detection strategy, multi-domain incident coordination, and security-vs-operational arbitration, without duplicating each specialist's own hardening ownership.
+- Sixth specialist agent: `agents/openstack-architect/AGENT.md` — owns OpenStack deployment/upgrade/operations and the destination side of VMware-to-OpenStack migrations (including the active boot-failure issue), coordinating with `vmware-architect` (source side), `backup-dr-architect` (backup role policy), and `security-architect` (baseline images).
+
+### Changed
+- Retrofitted `agents/chief-infrastructure-engineer/AGENT.md`, `agents/vmware-architect/AGENT.md`, `agents/windows-infrastructure-engineer/AGENT.md`, and `agents/backup-dr-architect/AGENT.md` Vendor Guidance sections to reference `knowledge/index.md` as the source list rather than restating vendor sources inline — `knowledge/index.md` is now the single source of truth for vendor documentation mapping.
+- Updated `knowledge/index.md` OpenStack, Wazuh, and CIS Benchmarks rows to reflect the newly created `openstack-architect` and `security-architect` agents (previously marked "agent not yet created").
+
+### Next milestone
+- Linux Platform Engineer agent (referenced across `backup-dr-architect`, `openstack-architect`, and `knowledge/index.md` as "not yet created" — the remaining gap in core platform coverage alongside Windows/VMware/OpenStack).
+- `templates/programme-charter.md` (referenced by `chief-infrastructure-engineer` since Milestone 1 but not yet created) and `templates/rollback-plan.md`.
+- `docs/architecture.md` — a platform-level document explaining how all six agents, two workflows, and supporting templates/standards fit together, useful now that the repository has enough surface area to need an orientation document beyond the README.

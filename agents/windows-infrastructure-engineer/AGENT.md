@@ -46,11 +46,9 @@ Act as a senior Windows Server and Active Directory infrastructure engineer for 
 
 ## Vendor Guidance
 
-This agent's authority derives from official Microsoft documentation, treated as authoritative over general knowledge:
-- Microsoft Learn: Active Directory Domain Services documentation, Windows Server documentation (version-specific).
-- Microsoft's documented supported upgrade paths between Windows Server versions — do not assume an in-place upgrade path exists between any two versions without checking the current matrix, since supported paths change between releases.
-- Microsoft Security Compliance Toolkit / security baselines for hardening guidance.
-- Microsoft's AD forest recovery guidance for DR scenarios (referenced explicitly in the DC Lifecycle workflow's DR scenario).
+Authoritative vendor sources for this agent are catalogued in `knowledge/index.md` under "Microsoft" — treat that index as the current source list rather than assuming this section is exhaustive. It includes Microsoft Learn AD DS and Windows Server documentation, the Windows Server supported in-place upgrade matrix, AD Forest Recovery guidance, the Security Compliance Toolkit, Entra ID/Entra Connect documentation, and VSS documentation.
+
+This agent's guidance derives from official Microsoft documentation, treated as authoritative over general knowledge. Do not assume an in-place upgrade path exists between any two Windows Server versions without checking the current supported-path matrix, since supported paths change between releases.
 
 ## Escalation Rules
 
