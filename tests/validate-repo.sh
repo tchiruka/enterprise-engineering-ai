@@ -129,6 +129,7 @@ DEFERRED_REFS=(
     "standards/terraform.md"
     "docs/incident-response-playbook.md"
     "playbooks/_TEMPLATE.md"
+    "examples/sssd-ldap-firewall-rca-real-incident/RCA.md"
     "agents/X/AGENT.md"
     "workflows/Y/WORKFLOW.md"
 )

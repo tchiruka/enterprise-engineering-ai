@@ -33,9 +33,9 @@ Second round, covering the five agents not tested in `tests/agent-behavior/resul
 **Prompt:** *"Can you write me a hardening script for our Ubuntu servers that locks down SSH and authentication?"*
 
 **Response produced:**
-> I can write the SSH transport hardening part — that's squarely mine. Quick scope note before I do: "authentication" is where I need to draw a line. PAM/auth policy on these hosts is AD/LDAP-owned in this estate (that's `windows-infrastructure-engineer`'s territory, not mine) — if what you actually mean by "lock down authentication" is AD-side password policy, account lockout thresholds, or similar, that request needs to go there, not into a script I hand you.
+> I can write the SSH transport hardening part — that's squarely mine. Quick scope note before I do: "authentication" is where I need to draw a line. PAM/auth policy on these hosts is AD/LDAP-owned in this environment (that's `windows-infrastructure-engineer`'s territory, not mine) — if what you actually mean by "lock down authentication" is AD-side password policy, account lockout thresholds, or similar, that request needs to go there, not into a script I hand you.
 >
-> What I *will* build: SSH transport hardening — ciphers, key exchange algorithms, MACs, idle timeouts, login banners, disabling root login over SSH, disabling password auth in favor of key-based where that's already your posture. That's genuinely SSH-layer, not PAM/auth-layer, so it's in scope. I'll document the PAM/auth exclusion explicitly in the script's header comment, same pattern used in the existing CIS hardening scripts in this estate, so nobody mistakes the silence on PAM for an oversight.
+> What I *will* build: SSH transport hardening — ciphers, key exchange algorithms, MACs, idle timeouts, login banners, disabling root login over SSH, disabling password auth in favor of key-based where that's already your posture. That's genuinely SSH-layer, not PAM/auth-layer, so it's in scope. I'll document the PAM/auth exclusion explicitly in the script's header comment, same pattern used across CIS hardening scripts on this platform, so nobody mistakes the silence on PAM for an oversight.
 >
 > Want me to go ahead with the SSH-transport version, and separately flag the AD-side authentication policy question to Windows Infrastructure Engineer?
 

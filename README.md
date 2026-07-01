@@ -1,6 +1,8 @@
-# Enterprise Engineering AI Platform
+# Enterprise Engineering & Certification Consulting Platform
 
-An AI-powered internal consulting platform for senior infrastructure and systems engineering teams. This repository defines a set of specialist AI agents, reusable workflows, documentation templates, and engineering standards that together behave like an in-house consulting practice: consistent, vendor-aligned, audit-ready, and safe for production use.
+A vendor-neutral, organization-agnostic AI-powered consulting platform for infrastructure and GRC engagements. This repository defines a set of specialist AI agents, reusable workflows, documentation templates, and engineering standards that together behave like an independent consulting practice — helping client organizations reach and maintain **ISO/IEC 27001 certification**, **PCI-DSS compliance**, and **ITIL v4-aligned service management**, using current vendor and industry best practice rather than any single organization's specific configuration.
+
+**This platform is not written for, or tied to, any one client.** Every agent, workflow, and template is designed to be dropped into a new engagement — a different client, a different vendor stack, a different maturity level — with the specifics (hostnames, tooling, org structure) supplied fresh each time, not assumed from a prior engagement.
 
 ## What this is
 
@@ -17,10 +19,11 @@ This is not a single prompt. It is a structured knowledge and agent repository:
 ## Design principles
 
 1. **Production-ready by default.** No placeholder text, no unexplained TODOs. Every artifact this platform produces should be usable as-is in a regulated enterprise environment.
-2. **Vendor-aligned.** Guidance traces back to official vendor documentation and recognized frameworks (ITIL v4, COBIT, ISO/IEC 27001, PCI-DSS, NIST).
+2. **Vendor-neutral, not vendor-blind.** Guidance traces back to official vendor documentation and recognized frameworks (ITIL v4, COBIT, ISO/IEC 27001, PCI-DSS, NIST) — but no agent assumes a fixed vendor stack. Every agent whose domain spans multiple possible vendors/tools/engines requires the specific one be confirmed per engagement, never inherited from a prior client.
 3. **Risk-aware.** Every workflow separates mandatory steps from recommendations, states assumptions explicitly, and includes rollback guidance.
 4. **Composable.** Agents and workflows are independent units that can be invoked individually or chained together for larger engagements.
-5. **Auditable.** Documentation formats are built to survive a CAB review, an ISO 27001 audit, or a PCI-DSS assessment without rework.
+5. **Certification- and audit-ready.** Documentation formats are built to survive a client's CAB review, an ISO/IEC 27001 certification audit, or a PCI-DSS assessment without rework — and every deliverable ties back to a specific control or requirement, not a generic "best practice" claim.
+6. **Engagement-portable.** Nothing in this repository should require rewriting to move from one client to the next — org-specific facts are inputs supplied at the start of an engagement, never hardcoded into an agent or workflow.
 
 ## Repository structure
 
@@ -62,7 +65,7 @@ This repository is being built incrementally, one milestone at a time — see `C
 - **2 playbooks** (`playbooks/`): Incident Response, Disaster Recovery Failover.
 - **4 worked examples** (`examples/`): a clean multi-step change (AD DC swing migration), a failure/rollback path (ESXi upgrade), a programme-level artifact (10G migration programme charter), and a real (not synthetic) incident RCA (SSSD/LDAP firewall interaction).
 - **2 test types** (`tests/`): structural validation (`validate-repo.sh`) and agent behavioral testing (`agent-behavior/`) — the latter already found and helped close two real platform gaps (missing emergency-change process; undefined Standard/Normal/Emergency change-type criteria).
-- **Claude Skill packaging** (`tools/`): `build-skill.sh` assembles the whole platform into a `enterprise-engineering-platform` Claude Skill bundle, generated fresh from live repo content each time rather than hand-duplicated — see `tools/README.md` for building and packaging it.
+- **Claude Skill packaging** (`tools/`): `build-skill.sh` assembles the whole platform into a `certification-consulting-platform` Claude Skill bundle, generated fresh from live repo content each time rather than hand-duplicated — see `tools/README.md` for building and packaging it.
 - **1 knowledge index** (`knowledge/index.md`) and **1 glossary** (`docs/glossary.md`) tying the above together.
 
 This snapshot will drift out of date the moment the next milestone lands — treat `CHANGELOG.md` as the authoritative record and this section as a periodically-refreshed convenience, not a live-updating source of truth.

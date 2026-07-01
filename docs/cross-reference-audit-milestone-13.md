@@ -25,8 +25,9 @@ This distinction is what Milestone 10's script got wrong; a bare `` `agents/` ``
 | `standards/terraform.md` | Conditional on future Terraform adoption | Correctly deferred |
 | `docs/incident-response-playbook.md` | Historical `CHANGELOG.md` note about its own resolution at a different path | Correct as-is |
 | `playbooks/_TEMPLATE.md` | New this milestone — `CONTRIBUTING.md` explicitly proposes it as "a reasonable future addition once a third playbook confirms the pattern generalizes," not yet created | Correctly deferred, same pattern as `standards/terraform.md` |
+| `examples/sssd-ldap-firewall-rca-real-incident/RCA.md` | Historical `CHANGELOG.md` reference to a directory renamed and reframed as an anonymized case study (`examples/sssd-ldap-firewall-rca-case-study/RCA.md`) during the platform's generalization pass — CHANGELOG history is preserved as-written, not retroactively rewritten | Correct as-is, same pattern as `docs/roadmap.md` |
 
-All other real file references — including `workflows/openstack-vm-migration-and-instance-lifecycle/WORKFLOW.md`, `examples/sssd-ldap-firewall-rca-real-incident/RCA.md`, and their cross-links — resolve cleanly.
+All other real file references — including `workflows/openstack-vm-migration-and-instance-lifecycle/WORKFLOW.md`, `examples/sssd-ldap-firewall-rca-case-study/RCA.md`, and their cross-links — resolve cleanly.
 
 *(Milestone 13 result, retained for history: 43 raw, 12 placeholder, 31 real, 29 resolved, 2 deferred. Milestone 16 result: 49 raw, 2 deferred.)*
 

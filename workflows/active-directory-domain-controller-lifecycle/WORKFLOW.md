@@ -13,7 +13,7 @@ Domain Controllers are the authentication and identity backbone of the environme
 - Administrative access: Domain Admins (or delegated equivalent) for the target domain; Enterprise Admins required for forest-wide operations (schema changes, cross-domain FSMO seizure).
 - Current, verified backup of System State (or full VM-level backup with application-consistent quiescing) for every DC in the affected domain, confirmed restorable — not just "job completed successfully."
 - Documented current AD topology: forest/domain structure, site topology, FSMO role holders, DNS configuration (AD-integrated zone scope, forwarders), replication schedule.
-- Change record raised in iTop, validated against `zss-change-validator` criteria before submission to CAB.
+- Change record raised in the client's ITSM/CMDB platform (e.g. iTop, ServiceNow, or equivalent), validated against the client's own change-control validation criteria before submission to CAB.
 - Confirmation of maintenance window, with downstream-system owners notified if the change carries any authentication-availability risk.
 - `dcdiag`, `repadmin`, and (for OS upgrades) the target OS media/ISO available and its hash verified.
 
@@ -200,7 +200,7 @@ Follow with metadata cleanup (`ntdsutil` → `metadata cleanup`) to remove the f
 - [ ] FSMO role holders confirmed and documented (`netdom query fsmo`).
 - [ ] No orphaned AD or DNS objects remain from the change.
 - [ ] Downstream-system owners confirm no authentication/DNS disruption observed.
-- [ ] Change record closed in iTop with evidence attached (before/after `dcdiag`/`repadmin` output).
+- [ ] Change record closed in the client's ITSM/CMDB platform with evidence attached (before/after `dcdiag`/`repadmin` output).
 - [ ] Backup of post-change state captured and verified restorable.
 
 ## Lessons Learned

@@ -12,7 +12,7 @@ Applies to all Bash scripts produced by any agent in this platform, for use in p
    ```
    `-e` exits on any unhandled error, `-u` treats unset variables as errors, `-o pipefail` ensures a failure anywhere in a pipeline fails the whole pipeline (without this, `false | true` exits 0, silently hiding the failure). This is non-negotiable for any script touching production state — the default Bash behavior of continuing past errors is the single most common source of scripts that "worked" but silently skipped a critical step.
 
-2. **Idempotency for any script that changes state.** Running the script twice should not cause errors or duplicate effects — check current state before acting (e.g. check if a file/user/service already exists in the desired state before creating/modifying it), matching the pattern already established in this estate's CIS hardening scripts.
+2. **Idempotency for any script that changes state.** Running the script twice should not cause errors or duplicate effects — check current state before acting (e.g. check if a file/user/service already exists in the desired state before creating/modifying it), matching the pattern any well-built CIS hardening script should follow.
 
 3. **Dry-run support for state-changing scripts.** Provide a `--dry-run` or `-n` flag that prints what would be done without doing it, mirroring the intent of PowerShell's `-WhatIf` (see `standards/powershell.md`) for the same reason: a state-changing script must be safely previewable before committing to run it against production.
    ```bash

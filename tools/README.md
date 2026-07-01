@@ -2,7 +2,7 @@
 
 ## Skill packaging
 
-This platform can be used as a Claude Skill — a single `enterprise-engineering-platform` skill that routes to the correct agent persona and pulls in the relevant workflow/template/standard content via progressive disclosure, rather than requiring the user to paste an `AGENT.md` into chat manually each time.
+This platform can be used as a Claude Skill — a single `certification-consulting-platform` skill that routes to the correct agent persona and pulls in the relevant workflow/template/standard content via progressive disclosure, rather than requiring the user to paste an `AGENT.md` into chat manually each time.
 
 ### Why the skill's content is generated, not hand-maintained
 
@@ -14,17 +14,17 @@ This platform can be used as a Claude Skill — a single `enterprise-engineering
 ./tools/build-skill.sh
 ```
 
-This assembles a skill folder at `dist/enterprise-engineering-platform/` — the authored `SKILL.md` plus a freshly-copied `references/` tree pulled directly from `agents/`, `workflows/`, `templates/`, `standards/`, `playbooks/`, `knowledge/`, and the two key `docs/` files. Run this any time repo content changes and the packaged skill needs to catch up — there's no dependency tracking beyond "re-run it," since the copy is cheap and the alternative (partial, stale updates) is worse.
+This assembles a skill folder at `dist/certification-consulting-platform/` — the authored `SKILL.md` plus a freshly-copied `references/` tree pulled directly from `agents/`, `workflows/`, `templates/`, `standards/`, `playbooks/`, `knowledge/`, and the two key `docs/` files. Run this any time repo content changes and the packaged skill needs to catch up — there's no dependency tracking beyond "re-run it," since the copy is cheap and the alternative (partial, stale updates) is worse.
 
 ### Packaging into a `.skill` file
 
 `build-skill.sh` only produces the folder — packaging it into a distributable `.skill` file (a validated zip) requires the skill-creator tooling's `package_skill.py` (validates required frontmatter fields, description length limits, then zips), which isn't bundled in this repository since it's a separate general-purpose skill-authoring tool, not something specific to this platform. If you have access to that tooling:
 
 ```bash
-python3 -m scripts.package_skill dist/enterprise-engineering-platform /path/to/output
+python3 -m scripts.package_skill dist/certification-consulting-platform /path/to/output
 ```
 
-If you don't have that tooling available, the `dist/enterprise-engineering-platform/` folder itself is still directly usable — Claude Code and Claude Desktop can read a skill folder directly without it being packaged into a `.skill` archive; packaging is primarily useful for distributing/uploading to `claude.ai`.
+If you don't have that tooling available, the `dist/certification-consulting-platform/` folder itself is still directly usable — Claude Code and Claude Desktop can read a skill folder directly without it being packaged into a `.skill` archive; packaging is primarily useful for distributing/uploading to `claude.ai`.
 
 ### Keeping the skill description within limits
 

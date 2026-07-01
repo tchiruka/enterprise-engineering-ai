@@ -42,15 +42,14 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 
 | Source | Authoritative for | Primary consuming agent(s) |
 |---|---|---|
-| Juniper Networks TechLibrary (Junos OS documentation) | Juniper switch/router configuration and administration | `network-architect` |
-| Cisco documentation (Cisco IOS/IOS-XE/NX-OS, per platform in use) | Cisco switch/router configuration and administration | `network-architect` |
-| NVIDIA/Mellanox documentation (Cumulus Linux / Onyx, per switch OS in use) | Mellanox switch configuration, high-throughput/low-latency networking | `network-architect` |
-| Supermicro documentation | Supermicro network hardware configuration (where used for switching or as network-adjacent server hardware) | `network-architect` |
+| Juniper Networks TechLibrary (Junos OS documentation) | Juniper switch/router configuration and administration | `network-architect`, where the engagement uses Juniper |
+| Cisco documentation (Cisco IOS/IOS-XE/NX-OS, per platform in use) | Cisco switch/router configuration and administration | `network-architect`, where the engagement uses Cisco |
+| NVIDIA/Mellanox documentation (Cumulus Linux / Onyx, per switch OS in use) | Mellanox switch configuration, high-throughput/low-latency networking | `network-architect`, where the engagement uses Mellanox |
 | Fortinet documentation (FortiOS — FortiGate firewalls) | Fortinet firewall configuration, policy, and hardening | `network-architect`, `security-architect` (policy strategy) |
 | SonicWall documentation (SonicOS) | SonicWall firewall configuration, policy, and hardening | `network-architect`, `security-architect` (policy strategy) |
 | PCI-DSS v4.0 Requirement 1 | Network security controls / segmentation | `network-architect`, `security-architect` |
 
-**Multi-vendor note:** this estate runs a mixed network vendor environment (Juniper and Cisco for switching/routing, Mellanox for high-throughput links — relevant to the 10G migration programme, Supermicro for adjacent hardware, and Fortinet/SonicWall for firewalls). `agents/network-architect/AGENT.md` should state explicitly which vendor's equipment is in scope for any given change, since configuration syntax, supported feature sets, and hardening guidance differ meaningfully across these platforms — do not assume guidance from one vendor's documentation applies to another's equipment.
+**Multi-vendor note:** this list is illustrative of common network vendors seen across engagements, not a fixed inventory this platform assumes exists. Client environments are very often multi-vendor (a mix of, for example, Juniper/Cisco for switching/routing, a specific vendor for high-throughput links, and a firewall vendor like Fortinet or SonicWall) — `agents/network-architect/AGENT.md` must confirm and state explicitly which vendor's equipment is actually in scope for any given engagement and any given change, never assume from a prior engagement, since configuration syntax, supported feature sets, and hardening guidance differ meaningfully across vendors.
 
 ### OpenStack
 
@@ -75,7 +74,7 @@ Each entry: which agent(s) rely on it, what it's authoritative for, and where to
 | MySQL Reference Manual (and MariaDB documentation where MariaDB is specifically in use) | Configuration, performance tuning, replication (binlog-based and Group Replication), backup/PITR, LDAP/PAM auth plugins | `database-engineer` |
 | Microsoft SQL Server documentation (Microsoft Learn) | Configuration, performance tuning, Always On Availability Groups/failover clustering, native backup/PITR, Windows Authentication/AD integration | `database-engineer` |
 
-**Multi-engine note:** this estate runs three relational database engines (PostgreSQL, MySQL, MSSQL) — `agents/database-engineer/AGENT.md` should state explicitly which engine's documentation applies for any given piece of guidance, since administration tooling, authentication mechanisms, and backup approaches differ meaningfully across the three, in the same way `network-architect`'s mixed-vendor network guidance must state which vendor applies.
+**Multi-engine note:** engagements vary in which relational database engine(s) are actually in use — commonly PostgreSQL, MySQL, or Microsoft SQL Server, sometimes more than one within the same client. `agents/database-engineer/AGENT.md` must confirm and state explicitly which engine's documentation applies for any given piece of guidance, never assume from a prior engagement, since administration tooling, authentication mechanisms, and backup approaches differ meaningfully across engines, in the same way `network-architect`'s multi-vendor network guidance must state which vendor applies.
 
 ### Other platform vendors
 
@@ -108,7 +107,7 @@ These aren't vendor documentation but are treated with equivalent authority for 
 | ISO/IEC 27001:2022 | ISMS controls (Annex A) | `templates/change-request.md`, `templates/rca.md`, most agents |
 | COBIT 2019 | Governance (esp. BAI06 change management) | `agents/chief-infrastructure-engineer/AGENT.md` |
 | ITIL v4 | Change enablement, problem management, service management practices | Platform-wide |
-| NIST SP 800-61 | Incident handling (referenced for daily reporting use, per Tonde's stated interest) | `templates/incident-report.md` structures around its four-phase lifecycle (Preparation, Detection & Analysis, Containment/Eradication/Recovery, Post-Incident Activity); owned by `agents/security-architect/AGENT.md` for coordination |
+| NIST SP 800-61 | Incident handling — useful as a daily/operational incident reporting structure independent of any specific certification framework | `templates/incident-report.md` structures around its four-phase lifecycle (Preparation, Detection & Analysis, Containment/Eradication/Recovery, Post-Incident Activity); owned by `agents/security-architect/AGENT.md` for coordination |
 
 ## Maintenance note
 

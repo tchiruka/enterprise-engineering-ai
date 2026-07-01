@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Script: build-skill.sh
-# Purpose: Regenerate the enterprise-engineering-platform Claude Skill bundle
+# Purpose: Regenerate the certification-consulting-platform Claude Skill bundle
 #   from the repository's live source files (agents/, workflows/, templates/,
 #   standards/, playbooks/, knowledge/, docs/) rather than maintaining a
 #   duplicated, driftable copy. The authored router (SKILL.md, the triage
@@ -12,7 +12,7 @@
 # Usage: ./tools/build-skill.sh [output-dir]
 #   output-dir defaults to ./dist relative to the repo root.
 #
-# This produces a skill FOLDER (dist/enterprise-engineering-platform/), not a
+# This produces a skill FOLDER (dist/certification-consulting-platform/), not a
 # packaged .skill file — packaging requires the skill-creator tooling
 # (validation + zip), which isn't part of this repo. See tools/README.md for
 # the packaging step.
@@ -24,7 +24,7 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
 OUTPUT_DIR="${1:-$REPO_ROOT/dist}"
-SKILL_DIR="$OUTPUT_DIR/enterprise-engineering-platform"
+SKILL_DIR="$OUTPUT_DIR/certification-consulting-platform"
 
 echo "Building skill bundle at: $SKILL_DIR"
 rm -rf "$SKILL_DIR"

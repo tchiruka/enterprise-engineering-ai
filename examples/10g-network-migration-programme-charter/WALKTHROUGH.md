@@ -1,6 +1,6 @@
 # Worked Example: 10G Network Migration Programme Charter
 
-This is a fictionalized but realistic worked example completing `templates/programme-charter.md` for the 10G network migration programme referenced throughout this platform (`agents/network-architect/AGENT.md`'s named responsibility, spanning Baines DC, Pegasus DC, and Telone DC). It's the third worked example, and the first to demonstrate the programme-charter artifact specifically — the first two examples (AD DC swing migration, ESXi upgrade failure/rollback) both operated at the single-change scale; this one shows the scale above that, per the `docs/glossary.md` distinction between change, workflow, and programme.
+This is a fictionalized but realistic worked example completing `templates/programme-charter.md` for the 10G network migration programme referenced throughout this platform (`agents/network-architect/AGENT.md`'s named responsibility, spanning Site A, Site B, and Site C). It's the third worked example, and the first to demonstrate the programme-charter artifact specifically — the first two examples (AD DC swing migration, ESXi upgrade failure/rollback) both operated at the single-change scale; this one shows the scale above that, per the `docs/glossary.md` distinction between change, workflow, and programme.
 
 ---
 
@@ -22,7 +22,7 @@ Current 1G inter-DC and intra-DC links are approaching capacity limits as VM den
 ## Scope
 
 ### In scope
-- Core switching upgrade to 10G at Baines DC, Pegasus DC, and Telone DC.
+- Core switching upgrade to 10G at Site A, Site B, and Site C.
 - Inter-DC link upgrades where current links are the binding capacity constraint.
 - Coordination with dependent workstreams whose traffic patterns this capacity increase is meant to serve (backup replication, VM migration/vMotion traffic, OpenStack migration traffic).
 
@@ -34,9 +34,9 @@ Current 1G inter-DC and intra-DC links are approaching capacity limits as VM den
 
 | Workstream | Owning agent | Workflow(s) used | Target completion | Status |
 |---|---|---|---|---|
-| Baines DC core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A (canary site) | TBD | Planning |
-| Pegasus DC core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A | TBD | Planning |
-| Telone DC core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A | TBD | Planning |
+| Site A core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A (canary site) | TBD | Planning |
+| Site B core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A | TBD | Planning |
+| Site C core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A | TBD | Planning |
 | Inter-DC link capacity upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario B | TBD | Planning |
 
 **Post-Milestone-16 update:** at the time this example was originally written, no dedicated workflow existed for this programme's core execution pattern — that gap is what the Risk Register entry below documented. `workflows/network-core-switching-upgrade/WORKFLOW.md` has since been authored specifically to close it, with Scenario A (single-site upgrade, canary-first) and Scenario B (inter-DC link upgrade) mapping directly onto this programme's workstreams. The Risk Register entry is left in place below rather than deleted, since it's a real record of the gap existing at the time and how it was closed — consistent with this platform's practice of feeding lessons back into the documents that identified them rather than erasing the trail.
@@ -51,7 +51,7 @@ Current 1G inter-DC and intra-DC links are approaching capacity limits as VM den
 
 | Risk | Likelihood | Impact | Mitigation | Owner |
 |---|---|---|---|---|
-| Core switching upgrade at a DC causes an unplanned outage affecting hosted production workloads | Medium | High | Canary-first: complete and validate Baines DC (lowest apparent risk site, fictional assumption for this example) before proceeding to Pegasus/Telone | `network-architect` |
+| Core switching upgrade at a DC causes an unplanned outage affecting hosted production workloads | Medium | High | Canary-first: complete and validate Site A (lowest apparent risk site, fictional assumption for this example) before proceeding to Site B/Site C | `network-architect` |
 | No dedicated workflow existed for this programme's core execution pattern at time of writing, increasing risk of inconsistent execution across the three DCs | Medium (at time of writing; resolved) | Medium | Author a dedicated workflow after or during the first DC's execution, capturing what was actually done, per this platform's established growth pattern — **done**: see `workflows/network-core-switching-upgrade/WORKFLOW.md` | `network-architect` |
 | Programme timeline contention with the EOL elimination programme and VMware-to-OpenStack migration for shared engineering capacity | Medium | Medium | Explicit capacity conversation with `agents/chief-infrastructure-engineer/AGENT.md` before committing target dates, rather than assuming all three programmes can run at full pace simultaneously | `chief-infrastructure-engineer` |
 
@@ -65,8 +65,8 @@ Current 1G inter-DC and intra-DC links are approaching capacity limits as VM den
 
 | Milestone | Target date | Dependent workstreams | Status |
 |---|---|---|---|
-| Baines DC switching upgrade complete and validated | TBD | Baines DC workstream | Planning |
-| First inter-DC link upgrade complete | TBD | Baines DC workstream (dependency) | Planning |
+| Site A switching upgrade complete and validated | TBD | Site A workstream | Planning |
+| First inter-DC link upgrade complete | TBD | Site A workstream (dependency) | Planning |
 | All three DCs complete | TBD | All workstreams | Planning |
 
 ## Compliance Framework Alignment

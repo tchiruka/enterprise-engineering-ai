@@ -39,7 +39,7 @@ Even under emergency timing, state the rollback plan before proceeding — per `
 
 ## Approval Authority
 
-Emergency changes require approval from a named individual with delegated emergency-change authority — **not** a verbal "go ahead" from whoever happens to be reachable. If this estate has not yet designated who holds that authority, that's itself a gap to close (flag to `agents/chief-infrastructure-engineer/AGENT.md` / a human decision-maker) rather than proceeding without any real approval and calling it emergency change. Record the approver's name and the approval timestamp here, even if given verbally/via chat — capture it in writing immediately after, not reconstructed later from memory.
+Emergency changes require approval from a named individual with delegated emergency-change authority — **not** a verbal "go ahead" from whoever happens to be reachable. If the client has not yet designated who holds that authority, that's itself a gap to close (flag to `agents/chief-infrastructure-engineer/AGENT.md` / a human decision-maker) rather than proceeding without any real approval and calling it emergency change. Record the approver's name and the approval timestamp here, even if given verbally/via chat — capture it in writing immediately after, not reconstructed later from memory.
 
 ## Mandatory Follow-Up
 

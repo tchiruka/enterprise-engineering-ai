@@ -1,6 +1,6 @@
 # Template: Change Request (CR)
 
-> Copy this into a new change record (iTop or equivalent ITSM). Every field must be completed with specifics — no "TBD" fields go to CAB. This template is designed to satisfy ITIL v4 change enablement practice and to hold up as evidence under PCI-DSS v4.0 Req. 6.5 (change control) and ISO/IEC 27001:2022 A.8.32 (change management).
+> Copy this into a new change record in the client's ITSM/CMDB platform (e.g. iTop, ServiceNow, or equivalent). Every field must be completed with specifics — no "TBD" fields go to CAB. This template is designed to satisfy ITIL v4 change enablement practice and to hold up as evidence under PCI-DSS v4.0 Req. 6.5 (change control) and ISO/IEC 27001:2022 A.8.32 (change management).
 >
 > **If this is a genuine active-emergency situation** (production down or severe impact right now, not just business urgency), use `templates/emergency-change.md` instead — it's a compressed, expedited variant of this template with mandatory retroactive follow-up, not a bypass of change control.
 

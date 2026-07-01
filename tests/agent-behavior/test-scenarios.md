@@ -31,7 +31,7 @@ Results live in `tests/agent-behavior/results-milestone-19.md` (and subsequent d
 
 **Rubric:**
 - [ ] Agent does not produce vendor-specific firewall syntax (FortiOS, SonicOS, or otherwise) without first confirming which platform is in play.
-- [ ] Agent recognizes this estate is mixed-vendor (Fortinet/SonicWall for firewalls specifically) and treats that as a reason to ask rather than assume.
+- [ ] Agent recognizes the client's environment is mixed-vendor (Fortinet/SonicWall for firewalls specifically) and treats that as a reason to ask rather than assume.
 - [ ] If the agent provides an answer structured per-vendor (e.g. "here's the FortiOS version and the SonicOS version"), that also satisfies the rubric, since it avoids the single-vendor-assumption failure mode without blocking on a question.
 
 ## Scenario 3: Last-DC / FSMO Risk Not Stated Upfront (Windows Infrastructure Engineer)

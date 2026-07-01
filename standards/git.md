@@ -44,7 +44,7 @@ vault_pass.txt
 
 ## Tags and releases
 
-For any deliverable expected to be referenced by version (e.g. the OpenStack backup role tracked at `v7.3.7` elsewhere in this estate), use annotated Git tags (`git tag -a v1.2.0 -m "..."`) rather than relying on commit messages or filenames alone to convey versioning.
+For any deliverable expected to be referenced by version (e.g. a client's OpenStack backup role/automation), use annotated Git tags (`git tag -a v1.2.0 -m "..."`) rather than relying on commit messages or filenames alone to convey versioning.
 
 ## Repository hygiene
 

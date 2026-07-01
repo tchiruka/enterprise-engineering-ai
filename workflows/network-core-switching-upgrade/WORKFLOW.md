@@ -1,7 +1,7 @@
 # Workflow: Network Core Switching Upgrade
 
 **Owning agent(s):** Network Architect (primary); Chief Infrastructure Engineer (programme-level sequencing across DCs); Security Architect (PCI-DSS segmentation impact); Backup & DR Architect and OpenStack Architect (dependent traffic scheduling)
-**Applies to:** Core switching infrastructure across Baines DC, Pegasus DC, and Telone DC — this workflow is vendor-aware given the estate's mixed environment (Juniper, Cisco, Mellanox), with vendor-specific implementation detail nested inside the relevant scenario steps
+**Applies to:** Core switching infrastructure across Site A, Site B, and Site C — this workflow is vendor-aware given the estate's mixed environment (Juniper, Cisco, Mellanox), with vendor-specific implementation detail nested inside the relevant scenario steps
 **Compliance frameworks referenced:** PCI-DSS v4.0 (Req. 1 — network security controls/segmentation), ITIL v4 (change enablement), COBIT 2019 (BAI06)
 
 ## Executive Summary
@@ -13,7 +13,7 @@ This workflow was identified as a genuine gap by `examples/10g-network-migration
 - Administrative access to the target switching platform (Juniper Junos, Cisco IOS/IOS-XE/NX-OS, or Mellanox/NVIDIA switch OS, depending on the site/link in question — **state which explicitly**).
 - Current running/startup configuration backed up and confirmed retrievable (not just assumed backed up by a general config-management tool — verify a specific, timestamped copy exists for this specific change).
 - Confirmed maintenance window coordinated with `agents/backup-dr-architect/AGENT.md` (avoid backup replication job schedules) and `agents/openstack-architect/AGENT.md` (avoid active cross-site migration traffic windows), per the Dependencies section of `examples/10g-network-migration-programme-charter/WALKTHROUGH.md`.
-- Change record raised in iTop, validated against `zss-change-validator` criteria before CAB submission.
+- Change record raised in the client's ITSM/CMDB platform (e.g. iTop, ServiceNow, or equivalent), validated against the client's own change-control validation criteria before CAB submission.
 - Physical hardware (new 10G-capable switching hardware, optics, cabling) confirmed on-site and pre-validated (power-on self-test, firmware version check) before the maintenance window — do not discover a DOA unit during the change window itself.
 
 ## Assessment
@@ -105,7 +105,7 @@ Follows Scenario A's site-level upgrade being complete and validated at both end
 - [ ] Canary-first applied: this is not the first site/link in the programme to receive this change, or if it is, that's stated explicitly as the deliberate canary with extra validation rigor applied.
 - [ ] Throughput validated under real or representative load, not just link-speed negotiation.
 - [ ] Old hardware/path retained until burn-in period completes, not decommissioned immediately at cutover.
-- [ ] Change record closed in iTop with before/after evidence attached, including the captured baseline comparison.
+- [ ] Change record closed in the client's ITSM/CMDB platform with before/after evidence attached, including the captured baseline comparison.
 
 ## Lessons Learned
 

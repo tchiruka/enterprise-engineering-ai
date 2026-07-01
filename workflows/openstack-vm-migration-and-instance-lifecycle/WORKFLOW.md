@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-This workflow was identified as a gap in `CHANGELOG.md` (Milestone 16's "next milestone" note) — `agents/openstack-architect/AGENT.md` names the active VMware-to-OpenStack boot-failure diagnostic work as a core responsibility but had no dedicated workflow behind it, unlike Windows/VMware/Linux/Database/Network, which all do. This workflow covers the two scenarios that make up that gap: **VMware-to-OpenStack VM Migration** (the destination-side import, coordinated with `agents/vmware-architect/AGENT.md` for the source side) and **Instance Boot-Failure Diagnosis** (the specific, named active issue in this estate), plus a third scenario for standalone OpenStack-native instance lifecycle work that isn't migration-related.
+`agents/openstack-architect/AGENT.md` names VMware-to-OpenStack boot-failure diagnostic work as a core responsibility, and this workflow gives it (and the rest of the OpenStack VM lifecycle) a documented procedure to follow. It covers three scenarios: **VMware-to-OpenStack VM Migration** (the destination-side import, coordinated with `agents/vmware-architect/AGENT.md` for the source side), **Instance Boot-Failure Diagnosis** (a common, well-understood issue class in this kind of migration, not specific to any one client), and standalone OpenStack-native instance lifecycle work that isn't migration-related.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ This workflow was identified as a gap in `CHANGELOG.md` (Milestone 16's "next mi
 - For migration scenarios: confirmed coordination with `agents/vmware-architect/AGENT.md` on source-side VM state (powered off cleanly, no pending snapshots to consolidate, VMware Tools status known) before export begins.
 - Target Nova compute host capacity confirmed sufficient (CPU/RAM/storage) before starting an import.
 - Neutron network mapping planned in advance — the source VMware port group's VLAN/subnet must have a confirmed corresponding Neutron network before cutover, not discovered as a gap during the migration itself.
-- Change record raised in iTop, validated against `zss-change-validator` criteria before CAB submission.
+- Change record raised in the client's ITSM/CMDB platform (e.g. iTop, ServiceNow, or equivalent), validated against the client's own change-control validation criteria before CAB submission.
 - Current backup of the source VM (VMware-side) confirmed before migration begins — if migration fails destructively, the source should still be recoverable.
 
 ## Assessment
@@ -46,7 +46,7 @@ Baseline "healthy" = all Nova/Neutron/Cinder/Glance services reporting `up`, no 
 ## Dependencies
 
 - `agents/vmware-architect/AGENT.md`: source-side VM state and export.
-- `agents/backup-dr-architect/AGENT.md`: confirms the OpenStack backup role (versioned, e.g. `v7.3.7` in this estate) covers the newly migrated instance once it's live — a migrated instance with no backup coverage is a silent gap that's easy to miss amid migration-focused validation.
+- `agents/backup-dr-architect/AGENT.md`: confirms the client's OpenStack backup role/automation (versioned per the client's own convention) covers the newly migrated instance once it's live — a migrated instance with no backup coverage is a silent gap that's easy to miss amid migration-focused validation.
 - `agents/linux-platform-engineer/AGENT.md` or `agents/windows-infrastructure-engineer/AGENT.md`: guest-OS-level validation post-migration, depending on the migrated VM's OS.
 - `agents/security-architect/AGENT.md`: if the migrated workload is PCI-scoped, confirm the OpenStack-side network segmentation and baseline image hardening meet the same bar the VMware-side environment did.
 
@@ -59,7 +59,7 @@ Baseline "healthy" = all Nova/Neutron/Cinder/Glance services reporting `up`, no 
 2. Export/convert the source disk image (VMDK → an OpenStack-compatible format, typically QCOW2 or RAW) using the estate's established conversion tooling.
 3. Import the converted image into Glance: `openstack image create --disk-format qcow2 --file <converted-image> <name>`.
 4. Confirm Neutron network mapping is correctly configured for the target network before instance creation — do not discover a missing network mapping after the instance is already created.
-5. Create the instance from the imported image, explicitly specifying boot parameters (do not rely on Nova's defaults matching what the source VM needs) — this is the step most connected to the named active boot-failure issue in this estate, so treat boot device/driver configuration as a first-class step requiring explicit verification, not an assumption.
+5. Create the instance from the imported image, explicitly specifying boot parameters (do not rely on Nova's defaults matching what the source VM needs) — this is the step most connected to the boot-failure issue class Scenario B below addresses, so treat boot device/driver configuration as a first-class step requiring explicit verification, not an assumption.
 6. Boot the instance and immediately capture console output for review before declaring success: `openstack console log show <instance>`.
 
 ### Validation
@@ -75,7 +75,7 @@ Baseline "healthy" = all Nova/Neutron/Cinder/Glance services reporting `up`, no 
 
 ## Scenario B: Instance Boot-Failure Diagnosis
 
-This scenario directly addresses the active, named boot-failure issue in this estate (`agents/openstack-architect/AGENT.md` Responsibility #1). Use this when Scenario A's Step 6 validation fails, or when investigating a previously-migrated instance retroactively found to have boot issues.
+This scenario directly addresses the boot-failure issue class named in `agents/openstack-architect/AGENT.md` Responsibility #1. Use this when Scenario A's Step 6 validation fails, or when investigating a previously-migrated instance retroactively found to have boot issues.
 
 ### Implementation — diagnostic sequence (in order, per `agents/openstack-architect/AGENT.md`'s Decision Framework: diagnose from OpenStack-side evidence first)
 1. **Console log first** — `openstack console log show <instance>` is the fastest signal for boot failures. Look specifically for: missing driver messages (indicates a VirtIO driver mismatch from the conversion), boot device errors (indicates incorrect boot order surviving conversion), filesystem mount failures (can indicate image format/conversion corruption).
@@ -124,7 +124,7 @@ For instance lifecycle work not related to VMware migration — new OpenStack-na
 - [ ] For migrations: source VM retained until burn-in complete; data integrity spot-check performed.
 - [ ] For boot-failure diagnosis: root cause stated explicitly, and systemic findings fed back into Scenario A as a process improvement, not just fixed locally.
 - [ ] Backup coverage confirmed for any new/migrated instance with `agents/backup-dr-architect/AGENT.md`.
-- [ ] Change record closed in iTop with before/after evidence attached.
+- [ ] Change record closed in the client's ITSM/CMDB platform with before/after evidence attached.
 
 ## Lessons Learned
 

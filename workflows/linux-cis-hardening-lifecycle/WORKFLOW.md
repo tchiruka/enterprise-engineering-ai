@@ -6,7 +6,7 @@
 
 ## Executive Summary
 
-CIS Benchmark hardening reduces attack surface on Linux hosts by disabling unnecessary services, enforcing secure kernel/filesystem/SSH parameters, and enabling integrity monitoring — but hardening applied carelessly can break legitimate application dependencies or authentication paths. This workflow covers the full lifecycle: baseline hardening on a new/existing host, handling documented exceptions where a control conflicts with an operational dependency, periodic re-audit to catch configuration drift, and the specific boundary discipline this estate already follows — deliberately excluding PAM/auth (AD/LDAP-owned) and host firewall design intent (network-layer-owned) from the hardening script itself, even though the script may configure the mechanism.
+CIS Benchmark hardening reduces attack surface on Linux hosts by disabling unnecessary services, enforcing secure kernel/filesystem/SSH parameters, and enabling integrity monitoring — but hardening applied carelessly can break legitimate application dependencies or authentication paths. This workflow covers the full lifecycle: baseline hardening on a new/existing host, handling documented exceptions where a control conflicts with an operational dependency, periodic re-audit to catch configuration drift, and a specific boundary discipline this platform recommends across engagements — deliberately excluding PAM/auth (AD/LDAP-owned) and host firewall design intent (network-layer-owned) from the hardening script itself, even though the script may configure the mechanism.
 
 ## Prerequisites (all scenarios)
 
@@ -14,7 +14,7 @@ CIS Benchmark hardening reduces attack surface on Linux hosts by disabling unnec
 - Confirmed OS/distribution version and whether it's within vendor support (an EOL distribution changes the risk calculus — flag per `agents/linux-platform-engineer/AGENT.md`'s escalation rules rather than proceeding as routine).
 - Target CIS Benchmark level identified (Level 1 or Level 2) and confirmed against Security Architect's baseline strategy for this host's classification (e.g. PCI-scoped hosts may warrant Level 2 where general-purpose hosts use Level 1).
 - Documented exceptions register checked for this host/role — any known operational dependency that conflicts with a standard control should already be recorded, not rediscovered mid-implementation.
-- Change record raised in iTop for anything beyond a documented, pre-approved standard baseline application; validated against `zss-change-validator` criteria before CAB submission where required.
+- Change record raised in the client's ITSM/CMDB platform (e.g. iTop, ServiceNow, or equivalent) for anything beyond a documented, pre-approved standard baseline application; validated against the client's own change-control validation criteria before CAB submission where required.
 - Current backup/snapshot of the host confirmed, particularly for hardening applied to an already-in-service host rather than a fresh build.
 
 ## Assessment (all scenarios)
@@ -50,7 +50,7 @@ Baseline established = current state recorded before any change, so the post-har
 
 - **Blast radius:** typically single-host, but a hardening control applied via a fleet-wide Ansible role run without adequate testing can affect many hosts simultaneously if a bad control ships broadly — this is why the Implementation section below mandates a canary/pilot-host approach before fleet-wide rollout.
 - **Failure modes:** SSH lockout (if transport hardening is misapplied without an active session held open as a safety net), broken application dependency (a blacklisted kernel module or disabled service that a legitimate application actually needs), broken authentication (if a control inadvertently touches PAM/auth configuration — explicitly out of scope for this workflow's hardening script, but a real risk if scope discipline isn't maintained), broken monitoring (NRPE/Wazuh agent health affected by AppArmor/SELinux enforcement of a profile that wasn't tuned for the monitoring agent).
-- **MUST:** keep an active, separate SSH/console session open and unaffected by the change until SSH hardening is validated — never apply SSH transport hardening in a way that could lock out the only active session. Never let the hardening script touch PAM/auth configuration (AD/LDAP-owned) or firewall design intent (network-layer-owned) — this is a deliberate, documented scope boundary from the existing pattern in this estate, not an oversight to "fix" by expanding the script's scope.
+- **MUST:** keep an active, separate SSH/console session open and unaffected by the change until SSH hardening is validated — never apply SSH transport hardening in a way that could lock out the only active session. Never let the hardening script touch PAM/auth configuration (AD/LDAP-owned) or firewall design intent (network-layer-owned) — this is a deliberate, documented scope boundary this platform recommends across engagements, not an oversight to "fix" by expanding the script's scope.
 - **SHOULD:** apply to one canary host per role/OS-version combination before fleet-wide rollout; re-run the hardening script (idempotently) on a schedule to catch configuration drift rather than treating hardening as a one-time event.
 
 ## Dependencies
@@ -58,7 +58,7 @@ Baseline established = current state recorded before any change, so the post-har
 - Security Architect: baseline level (1 vs. 2) selection per host classification, and arbitration for any control that conflicts with a documented operational dependency.
 - Windows Infrastructure Engineer: for the SSSD/LDAP boundary — this workflow's hardening script does not touch PAM/auth, but validating that authentication still works post-hardening requires confirming the AD-side configuration is unaffected, which may need cross-agent confirmation if anything looks off.
 - Network Architect: for the host firewall boundary — this workflow configures the mechanism (UFW/firewalld rule syntax) but the *design intent* (which ports/sources should be allowed) should trace back to Network Architect's documented allow-list pattern, not be invented ad hoc during hardening.
-- Backup & DR Architect: confirm backup agent compatibility with AppArmor/SELinux enforcement before enabling enforcing mode broadly, given the known NRPE-adjacent memory-consumption risk pattern already flagged in this estate for monitoring agents under resource pressure.
+- Backup & DR Architect: confirm backup agent compatibility with AppArmor/SELinux enforcement before enabling enforcing mode broadly — monitoring agents (e.g. NRPE-based) are a known category of software that can show elevated memory consumption under resource pressure, worth checking for regardless of which specific monitoring stack the client runs.
 
 ---
 
@@ -66,7 +66,7 @@ Baseline established = current state recorded before any change, so the post-har
 
 ### Implementation
 1. Confirm target CIS level and OS version against the documented baseline strategy.
-2. Apply the idempotent hardening script/role covering (per the established pattern in this estate): AIDE, AppArmor/SELinux, sysctl hardening, SSH transport hardening, chrony/NTP, kernel module blacklisting.
+2. Apply the idempotent hardening script/role covering: AIDE, AppArmor/SELinux, sysctl hardening, SSH transport hardening, chrony/NTP, kernel module blacklisting.
 3. **Explicitly exclude from the script's scope:** PAM/auth configuration (routes to `agents/windows-infrastructure-engineer/AGENT.md` for the AD/LDAP side, `agents/linux-platform-engineer/AGENT.md`'s own SSSD client-side responsibility for the Linux side — but not this hardening script) and host firewall rule *design* (the script may apply UFW/firewalld syntax, but the allow-list content should trace to Network Architect's documented design, not be invented here).
 4. Apply first to a canary host matching the role/OS-version combination; do not proceed to fleet-wide rollout until the canary is validated (see below).
 5. Roll out fleet-wide via Ansible (per `standards/ansible.md`) once canary validation passes, respecting maintenance windows and applying in batches rather than all hosts simultaneously.
@@ -124,7 +124,7 @@ Used when a specific CIS control conflicts with a genuine operational dependency
 - [ ] No PAM/auth or firewall design-intent changes made by the hardening script itself — scope boundary respected.
 - [ ] Any control conflict documented as an explicit, scoped exception in the compensating-control register, not silently skipped.
 - [ ] NRPE/Wazuh monitoring agent confirmed functional post-hardening.
-- [ ] Change record closed in iTop with before/after evidence (Assessment output vs. post-hardening state).
+- [ ] Change record closed in the client's ITSM/CMDB platform with before/after evidence (Assessment output vs. post-hardening state).
 
 ## Lessons Learned
 

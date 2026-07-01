@@ -15,7 +15,7 @@ ESXi hosts and vCenter Server are the foundation every production VM in the VMwa
 - Current, verified vCenter Server Appliance (VCSA) backup (file-based backup via the VAMI, or image-level) confirmed restorable.
 - Current, verified backups of all VMs on hosts being upgraded — coordinate with Backup & DR Architect to confirm backup jobs aren't scheduled to run during the maintenance window.
 - HA/DRS admission control headroom confirmed sufficient to absorb one host at a time being placed in maintenance mode without violating failover capacity.
-- Change record raised in iTop, validated against `zss-change-validator` criteria before CAB submission.
+- Change record raised in the client's ITSM/CMDB platform (e.g. iTop, ServiceNow, or equivalent), validated against the client's own change-control validation criteria before CAB submission.
 - Downtime/maintenance window confirmed with stakeholders if any workload cannot tolerate vMotion (e.g. VMs with passthrough devices, certain clustered workloads).
 
 ## Assessment (all scenarios)
@@ -132,7 +132,7 @@ For hosts being retired outright rather than upgraded — e.g. legacy Dell 11th-
 - [ ] HA/DRS admission control healthy with no faults post-change.
 - [ ] No orphaned snapshots, no VMs stranded on evacuated hosts.
 - [ ] Backup software and monitoring agent functionality confirmed post-upgrade, not just assumed compatible.
-- [ ] Change record closed in iTop with before/after evidence attached.
+- [ ] Change record closed in the client's ITSM/CMDB platform with before/after evidence attached.
 - [ ] VCSA/host backups captured pre-change and confirmed restorable.
 
 ## Lessons Learned

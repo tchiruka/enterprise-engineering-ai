@@ -1,7 +1,7 @@
 # Workflow: Database Engine Lifecycle Management
 
 **Owning agent(s):** Database Engineer (primary); Chief Infrastructure Engineer (multi-instance programme sequencing); Security Architect (PCI-DSS scope, auth findings); Backup & DR Architect (recoverability assurance for database-native backups); Windows Infrastructure Engineer (AD/LDAP server-side auth, and Windows Server OS underneath any MSSQL instance)
-**Applies to:** PostgreSQL, MySQL (and MySQL-compatible engines, e.g. MariaDB), and Microsoft SQL Server (MSSQL) — this workflow covers all three engines in this estate, with engine-specific implementation detail nested inside each scenario rather than duplicated across three separate workflow documents
+**Applies to:** PostgreSQL, MySQL (and MySQL-compatible engines, e.g. MariaDB), and Microsoft SQL Server (MSSQL) — this workflow covers all three engines commonly encountered across engagements, with engine-specific implementation detail nested inside each scenario rather than duplicated across three separate workflow documents
 **Compliance frameworks referenced:** PCI-DSS v4.0 (Req. 3 — protection of stored data; Req. 8 — authentication), ISO/IEC 27001:2022 (A.8.24 use of cryptography, A.8.2 privileged access), ITIL v4 (change enablement)
 
 ## Executive Summary
@@ -13,7 +13,7 @@ Databases hold the estate's most sensitive and hardest-to-regenerate data, and t
 - Administrative access appropriate to the specific engine (PostgreSQL superuser/role with `CREATEDB`/replication privileges as needed; MySQL account with appropriate `GRANT`s; MSSQL `sysadmin` or scoped equivalent).
 - **State the engine explicitly before starting** — this workflow's Implementation steps are nested by engine specifically so this can't be skipped by accident.
 - Current, verified backup using the engine's native mechanism (see Scenario C), confirmed restorable — not just "job completed."
-- Change record raised in iTop, validated against `zss-change-validator` criteria before CAB submission.
+- Change record raised in the client's ITSM/CMDB platform (e.g. iTop, ServiceNow, or equivalent), validated against the client's own change-control validation criteria before CAB submission.
 - For any auth-related change: confirmation with `agents/windows-infrastructure-engineer/AGENT.md` that the AD/LDAP server side is healthy and ready, since a database-side auth change against an unhealthy AD/LDAP backend will fail in ways that look database-side at first.
 
 ## Assessment (all scenarios, all engines — run before selecting a scenario)
@@ -158,7 +158,7 @@ BACKUP LOG [DatabaseName] TO DISK = 'path\to\log.trn' WITH CHECKSUM;
 - [ ] Auth confirmed working post-change via an actual test connection, not assumed.
 - [ ] For upgrades: target version confirmed via engine query, not just installer/package output.
 - [ ] For backup verification: restore actually performed and validated against a separate instance, not just backup-job-success relied upon.
-- [ ] Change record closed in iTop with before/after evidence attached.
+- [ ] Change record closed in the client's ITSM/CMDB platform with before/after evidence attached.
 
 ## Lessons Learned
 
