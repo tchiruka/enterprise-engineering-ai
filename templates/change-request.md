@@ -1,0 +1,70 @@
+# Template: Change Request (CR)
+
+> Copy this into a new change record (iTop or equivalent ITSM). Every field must be completed with specifics — no "TBD" fields go to CAB. This template is designed to satisfy ITIL v4 change enablement practice and to hold up as evidence under PCI-DSS v4.0 Req. 6.5 (change control) and ISO/IEC 27001:2022 A.8.32 (change management).
+
+## Change Record Header
+
+| Field | Value |
+|---|---|
+| CR Number | |
+| Title | Short, specific — not "Server maintenance" but "In-place OS upgrade: PRD-DC03 (sec.v.co.zw) Server 2016 → 2022" |
+| Requested by | |
+| Change owner / implementer | |
+| Change type | Standard / Normal / Emergency |
+| Risk classification | Low / Medium / High — with justification |
+| Affected system(s)/CI(s) | Reference the CMDB CI IDs |
+| Proposed date/time | |
+| Maintenance window duration | |
+| CAB approval required? | Yes/No — and why |
+
+## Overview
+
+What is changing and why. 2-4 sentences, written so a non-specialist CAB member understands the business reason for the change, not just the technical mechanics.
+
+## Scope
+
+Explicitly what is and is not included in this change. If this change is one step in a larger programme (e.g. one DC in a multi-forest upgrade programme), say so and reference the programme.
+
+## Business Justification
+
+Why this change is needed now — tie to a specific driver: EOL/EOS deadline, security finding, audit finding, capacity constraint, incident remediation.
+
+## Risk Assessment
+
+- **Blast radius:** what fails, and for whom, if this goes wrong.
+- **Likelihood:** based on prior similar changes, testing performed, vendor-documented issues for this operation.
+- **Impact if it fails:** service downtime, data loss potential, compliance exposure.
+- **Risk classification justification:** why Low/Medium/High given the above.
+
+## Pre-Implementation Checklist
+
+- [ ] Backup taken and verified restorable (attach evidence or reference).
+- [ ] Change tested in non-production where applicable, or justification given for why not.
+- [ ] Rollback plan documented below and confirmed executable within the maintenance window.
+- [ ] Stakeholders/downstream system owners notified.
+- [ ] Required approvals obtained (list who/when).
+
+## Implementation Plan
+
+Numbered, step-by-step. Reference the specific workflow document this follows (e.g. `workflows/active-directory-domain-controller-lifecycle/WORKFLOW.md`, Scenario B) rather than duplicating full procedural detail here — the CR should show *what* will happen and *when*, with the authoritative how-to living in the workflow doc.
+
+## Validation Plan
+
+Specific, objective checks to confirm success — commands, expected output, thresholds. Not "confirm it's working" but "`dcdiag /v` returns zero errors; `repadmin /replsummary` shows 0 fails across all partners."
+
+## Rollback Plan
+
+Explicit steps to revert if validation fails. State the time cost of rollback and confirm it fits within the approved maintenance window. If rollback is not possible (e.g. certain in-place upgrades), state this explicitly and describe the forward-fix contingency instead.
+
+## Communication Plan
+
+Who is notified before, during (if there's user-visible impact), and after the change. Include the specific notification channel and timing.
+
+## Post-Implementation Review
+
+Completed after the change:
+- [ ] Validation plan executed — attach evidence.
+- [ ] Any deviation from plan documented.
+- [ ] Incident raised? (if the change caused an unplanned issue, link it)
+- [ ] Change closed with outcome: Successful / Successful with issues / Failed / Rolled back.
+- [ ] Lessons learned fed back into the owning workflow document if applicable.
