@@ -34,12 +34,12 @@ Current 1G inter-DC and intra-DC links are approaching capacity limits as VM den
 
 | Workstream | Owning agent | Workflow(s) used | Target completion | Status |
 |---|---|---|---|---|
-| Baines DC core switching upgrade | `agents/network-architect/AGENT.md` | No dedicated network-hardware-upgrade workflow exists yet in `workflows/` — this programme's execution would itself be a strong candidate to produce one, per the pattern established elsewhere in this platform of building workflows from real recurring work | TBD | Planning |
-| Pegasus DC core switching upgrade | `agents/network-architect/AGENT.md` | (as above) | TBD | Planning |
-| Telone DC core switching upgrade | `agents/network-architect/AGENT.md` | (as above) | TBD | Planning |
-| Inter-DC link capacity upgrade | `agents/network-architect/AGENT.md` | (as above) | TBD | Planning |
+| Baines DC core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A (canary site) | TBD | Planning |
+| Pegasus DC core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A | TBD | Planning |
+| Telone DC core switching upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario A | TBD | Planning |
+| Inter-DC link capacity upgrade | `agents/network-architect/AGENT.md` | `workflows/network-core-switching-upgrade/WORKFLOW.md`, Scenario B | TBD | Planning |
 
-*Note on the missing workflow reference above: this is left visible deliberately rather than papering over it, since it demonstrates something real — not every programme starts with its execution workflow already built. This is itself a finding this example surfaces: see "What this example demonstrates" below.*
+**Post-Milestone-16 update:** at the time this example was originally written, no dedicated workflow existed for this programme's core execution pattern — that gap is what the Risk Register entry below documented. `workflows/network-core-switching-upgrade/WORKFLOW.md` has since been authored specifically to close it, with Scenario A (single-site upgrade, canary-first) and Scenario B (inter-DC link upgrade) mapping directly onto this programme's workstreams. The Risk Register entry is left in place below rather than deleted, since it's a real record of the gap existing at the time and how it was closed — consistent with this platform's practice of feeding lessons back into the documents that identified them rather than erasing the trail.
 
 ## Dependencies Between Workstreams
 
@@ -52,7 +52,7 @@ Current 1G inter-DC and intra-DC links are approaching capacity limits as VM den
 | Risk | Likelihood | Impact | Mitigation | Owner |
 |---|---|---|---|---|
 | Core switching upgrade at a DC causes an unplanned outage affecting hosted production workloads | Medium | High | Canary-first: complete and validate Baines DC (lowest apparent risk site, fictional assumption for this example) before proceeding to Pegasus/Telone | `network-architect` |
-| No dedicated workflow exists for this programme's core execution pattern, increasing risk of inconsistent execution across the three DCs | Medium | Medium | Author a `workflows/network-core-switching-upgrade/WORKFLOW.md` (or equivalent) after or during the first DC's execution, capturing what was actually done, per this platform's established growth pattern | `network-architect` |
+| No dedicated workflow existed for this programme's core execution pattern at time of writing, increasing risk of inconsistent execution across the three DCs | Medium (at time of writing; resolved) | Medium | Author a dedicated workflow after or during the first DC's execution, capturing what was actually done, per this platform's established growth pattern — **done**: see `workflows/network-core-switching-upgrade/WORKFLOW.md` | `network-architect` |
 | Programme timeline contention with the EOL elimination programme and VMware-to-OpenStack migration for shared engineering capacity | Medium | Medium | Explicit capacity conversation with `agents/chief-infrastructure-engineer/AGENT.md` before committing target dates, rather than assuming all three programmes can run at full pace simultaneously | `chief-infrastructure-engineer` |
 
 ## Governance
@@ -81,7 +81,7 @@ Not yet applicable — programme is in Planning status in this fictional example
 
 ## What this example demonstrates
 
-1. **Not every programme charter starts with all its supporting workflows already built** — the Workstreams table above honestly shows "no dedicated workflow exists yet" rather than inventing one for the sake of a clean-looking example. This is itself the more useful demonstration: it shows the charter surfacing a real gap (missing execution workflow) as a programme risk, which is exactly what the Risk Register is for.
+1. **Not every programme charter starts with all its supporting workflows already built** — the Workstreams table originally showed "no dedicated workflow exists yet" rather than inventing one for the sake of a clean-looking example, and the Risk Register captured that honestly as a real programme risk. That gap has since been closed (`workflows/network-core-switching-upgrade/WORKFLOW.md`), and this document was updated in place to show the resolution rather than quietly rewriting history — the same "feed lessons back into the source, but keep the trail visible" discipline used for RCA preventive actions elsewhere in this platform.
 2. **Programme-level canary-first**: the Dependencies section applies the same canary-first pattern (`docs/glossary.md`) used at the change level elsewhere in this platform, but at programme scale — complete one site fully before the next, rather than parallelizing all three DCs immediately.
 3. **Cross-programme capacity contention** is treated as a first-class programme risk, not an afterthought — this programme, the EOL elimination programme, and the OpenStack migration all compete for the same engineering capacity and site-level network capacity, and the charter says so explicitly rather than planning each programme as if it existed in isolation.
 4. **Not every programme is compliance-driven** — this one is capacity-driven, and the charter states that plainly rather than reaching for a PCI-DSS/ISO 27001 justification that isn't the actual reason the work exists. `templates/programme-charter.md`'s Compliance Framework Alignment section correctly returns "not the driver, but still relevant to specific in-scope changes" rather than being forced into a compliance-first narrative.

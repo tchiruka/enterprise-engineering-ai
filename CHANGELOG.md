@@ -220,3 +220,20 @@ All notable changes to this platform are tracked here by milestone.
 - `agents/database-engineer/AGENT.md` still has no dedicated workflow (per Milestone 14's carried-over note) — now that scope spans three engines, a single workflow covering all three (or three engine-specific scenarios within one workflow, matching the multi-scenario pattern used elsewhere) is a stronger candidate than before.
 - No dedicated workflow exists yet for the 10G migration programme's core execution pattern — still open from Milestone 14.
 - Re-run the cross-reference audit — still open from Milestone 14, and now touches an additional file (`agents/database-engineer/AGENT.md` was rewritten, not just extended).
+
+## [Milestone 16] - 2026-07-01
+
+### Added
+- Fourth full workflow: `workflows/database-engine-lifecycle/WORKFLOW.md` — brings `agents/database-engineer/AGENT.md` to workflow-backed parity with Windows/VMware/Linux. Covers all three engines (PostgreSQL, MySQL, MSSQL) in one document, 3 scenarios (Version Upgrade, Authentication Integration, Backup & Recoverability Verification), each nesting engine-specific implementation rather than splitting into three near-duplicate documents — same multi-scenario pattern already used for AD DC and ESXi/vCenter.
+- Fifth full workflow: `workflows/network-core-switching-upgrade/WORKFLOW.md` — closes the gap `examples/10g-network-migration-programme-charter/WALKTHROUGH.md` honestly surfaced as missing. 2 scenarios (Single-Site Core Switching Upgrade with within-site canary-first, Inter-DC Link Capacity Upgrade), vendor-aware given the mixed Juniper/Cisco/Mellanox estate.
+
+### Changed
+- `agents/database-engineer/AGENT.md` and `agents/network-architect/AGENT.md` — mission/responsibility sections cross-linked to their respective new workflows.
+- `examples/10g-network-migration-programme-charter/WALKTHROUGH.md` — updated in place to reflect the workflow gap it originally identified now being closed, with the Risk Register and Workstreams table both updated to show resolution rather than leaving a stale "gap exists" narrative uncorrected; the "What this example demonstrates" section updated to describe the full arc (gap identified → gap closed → document updated to show it) rather than just the identification half.
+- `docs/architecture.md` and `README.md` — workflow counts and listings updated from 3 to 5 workflows.
+- `docs/cross-reference-audit-milestone-13.md` — re-run and updated in place (per its own stated maintenance convention, rather than spawning a Milestone-16-numbered successor) given the volume of new cross-references from this milestone's two workflows. Result: clean, same two deliberately-deferred references as before, `docs/glossary.md` (fixed at Milestone 13) now confirmed in active cross-linked use.
+
+### Next milestone
+- No workflow yet exists for the OpenStack VM boot-failure diagnostic work `agents/openstack-architect/AGENT.md` owns as a named active responsibility — the remaining core agent without workflow-backed depth (Windows/VMware/Linux/Database/Network all now have one; OpenStack, Backup & DR, Security, and Chief Infrastructure Engineer do not, though the latter three are more naturally playbook/programme-shaped than workflow-shaped).
+- `examples/` has three worked examples now, all authored by Claude in a single sitting each — consider whether a worked example built from an actual real (anonymized) production change would strengthen the set more than a fourth synthetic one.
+- The repository has grown to 9 agents, 5 workflows, 5 templates, 6 standards, 2 playbooks, 3 examples, and 5 docs — worth a periodic sanity check that `CONTRIBUTING.md`'s review checklist (written at Milestone 1) still matches the structural conventions actually in use 16 milestones later.

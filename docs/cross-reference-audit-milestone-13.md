@@ -17,16 +17,17 @@ This distinction is what Milestone 10's script got wrong; a bare `` `agents/` ``
 
 ## Result
 
-**43 unique raw extractions. 12 correctly classified as placeholder/generic (not real paths). 31 real file references checked. 29 resolve cleanly. 2 are deliberately deferred/historical (not gaps).**
+**49 unique raw extractions (up from 43 at Milestone 13, reflecting the two new workflows and their cross-links added in Milestone 16). 13 correctly classified as placeholder/generic. 36 real file references checked. 34 resolve cleanly. 2 are deliberately deferred/historical (not gaps) — the same two as Milestone 13.**
 
 | Reference | Status | Disposition |
 |---|---|---|
-| `docs/roadmap.md` | Referenced only in a historical `CHANGELOG.md` note describing its own replacement by `docs/architecture.md` | Correct as-is — documents a past correction, not a live pointer |
+| `docs/roadmap.md` | Referenced only in a historical `CHANGELOG.md` note describing its own replacement by `docs/architecture.md` | Correct as-is |
 | `standards/terraform.md` | Referenced in `knowledge/index.md` as conditional on future Terraform adoption | Correctly deferred — no action needed while Ansible remains the automation backbone |
-| `docs/glossary.md` | Was missing at the start of this milestone | **Fixed this milestone** — see `docs/glossary.md` |
-| `docs/incident-response-playbook.md` | Appears only inside historical `CHANGELOG.md` notes (Milestone 11 "next milestone" and Milestone 12 "audit note") explaining that the actual deliverable landed at a different path (`playbooks/incident-response/PLAYBOOK.md`) | Correct as-is — same pattern as `docs/roadmap.md`, a historical note about its own resolution, not a live dangling pointer |
+| `docs/incident-response-playbook.md` | Appears only inside historical `CHANGELOG.md` notes explaining the actual deliverable landed at a different path (`playbooks/incident-response/PLAYBOOK.md`) | Correct as-is — historical note about its own resolution |
 
-All other 27 real file references (agents, workflows, templates, standards, knowledge index, examples, playbooks, and this document's own predecessor) resolve cleanly.
+**Milestone 13's fixed item (`docs/glossary.md`) now resolves cleanly and is used extensively across the new Milestone 16 workflows and the updated programme-charter example.** No new gaps introduced by Milestone 14, 15, or 16's work — `workflows/database-engine-lifecycle/WORKFLOW.md` and `workflows/network-core-switching-upgrade/WORKFLOW.md` are both correctly cross-linked from their owning agents and from the programme-charter example that originally identified the second one as a gap.
+
+*(Original Milestone 13 result, retained for history: 43 unique raw extractions, 12 placeholder, 31 real references, 29 resolved, 2 deferred.)*
 
 ## Why the numbers differ from Milestone 10/12's counts
 

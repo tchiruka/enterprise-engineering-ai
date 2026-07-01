@@ -56,7 +56,7 @@ enterprise-engineering-ai/
 This repository is being built incrementally, one milestone at a time — see `CHANGELOG.md` for the full history and `docs/architecture.md` for how the pieces below fit together. As of the most recent milestone:
 
 - **9 specialist agents** (`agents/`): Chief Infrastructure Engineer, VMware Architect, Windows Infrastructure Engineer, Linux Platform Engineer, Backup & DR Architect, Security Architect, OpenStack Architect, Network Architect, Database Engineer.
-- **3 full workflows** (`workflows/`): AD Domain Controller Lifecycle (7 scenarios), VMware ESXi/vCenter Upgrade Lifecycle (3 scenarios), Linux CIS Hardening Lifecycle (3 scenarios).
+- **5 full workflows** (`workflows/`): AD Domain Controller Lifecycle (7 scenarios), VMware ESXi/vCenter Upgrade Lifecycle (3 scenarios), Linux CIS Hardening Lifecycle (3 scenarios), Database Engine Lifecycle (3 scenarios, spanning PostgreSQL/MySQL/MSSQL), Network Core Switching Upgrade (2 scenarios).
 - **5 templates** (`templates/`): Change Request, RCA, Rollback Plan, Incident Report, Programme Charter.
 - **6 standards** (`standards/`): PowerShell, Bash, Ansible, Git, Logging, Naming Conventions.
 - **2 playbooks** (`playbooks/`): Incident Response, Disaster Recovery Failover.

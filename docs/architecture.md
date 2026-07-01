@@ -32,11 +32,13 @@ This table is itself a simplification — each agent's own `AGENT.md` "Scope" se
 
 ## Workflow structure
 
-Every workflow in `workflows/` follows the same ten-part lifecycle (`workflows/_TEMPLATE.md`): Executive Summary, Prerequisites, Assessment, Risk Analysis, Dependencies, Implementation, Validation, Rollback, Acceptance Criteria, Lessons Learned. Three workflows exist so far:
+Every workflow in `workflows/` follows the same ten-part lifecycle (`workflows/_TEMPLATE.md`): Executive Summary, Prerequisites, Assessment, Risk Analysis, Dependencies, Implementation, Validation, Rollback, Acceptance Criteria, Lessons Learned. Five workflows exist so far:
 
 - `active-directory-domain-controller-lifecycle` — 7 scenarios (Build, In-Place Upgrade, Swing Migration, FSMO Transfer/Seizure, Replication Troubleshooting, Decommission, DR).
 - `vmware-esxi-vcenter-upgrade-lifecycle` — 3 scenarios (vCenter Upgrade, Rolling ESXi Host Upgrade, EOL Hardware Retirement).
 - `linux-cis-hardening-lifecycle` — 3 scenarios (Baseline Hardening with canary-first rollout, Control Conflict/Documented Exception, Periodic Re-Audit).
+- `database-engine-lifecycle` — covers all three database engines (PostgreSQL, MySQL, MSSQL) in one document, 3 scenarios (Version Upgrade, Authentication Integration, Backup & Recoverability Verification), each scenario nesting engine-specific implementation detail rather than splitting into three near-duplicate documents.
+- `network-core-switching-upgrade` — 2 scenarios (Single-Site Core Switching Upgrade, Inter-DC Link Capacity Upgrade), authored specifically to close a gap `examples/10g-network-migration-programme-charter/WALKTHROUGH.md` honestly surfaced as missing.
 
 Where a domain has several related but distinct procedures, the pattern is **one workflow document with multiple scenarios sharing common Prerequisites/Assessment/Risk Analysis/Dependencies sections**, rather than fragmenting into many near-duplicate documents — this keeps shared risk context (e.g. "never touch the last DC in a domain," the canary-first pattern) visible once rather than repeated and potentially drifting across separate files. The canary-first pattern specifically originated in the Linux workflow and was retrofitted into the AD DC and VMware workflows once proven — see `docs/glossary.md` for the term's definition and `CHANGELOG.md` Milestone 12 for the retrofit itself.
 
