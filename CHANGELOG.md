@@ -100,3 +100,17 @@ All notable changes to this platform are tracked here by milestone.
 - Confirm and catalogue the actual network vendor documentation source in `knowledge/index.md` (currently a placeholder — needs the specific switch/router vendor(s) in use).
 - A second worked example demonstrating a failure/rollback path rather than a clean success, since the first example's RCA section was hypothetical rather than fully worked.
 - `standards/bash.md` and `standards/ansible.md` — referenced by `agents/linux-platform-engineer/AGENT.md` since Milestone 6 but not yet created, leaving that agent's primary deliverable format underspecified relative to `standards/powershell.md`'s level of detail for the Windows/VMware agents.
+
+## [Milestone 8] - 2026-07-01
+
+### Added
+- `standards/bash.md` — mandatory Bash standard (strict mode, idempotency, dry-run support, quoting discipline, shellcheck-clean), with a structural template mirroring `standards/powershell.md`'s level of detail.
+- `standards/ansible.md` — mandatory Ansible standard (idempotency via proper modules over raw shell, check-mode compatibility, Vault for secrets, role-based structure, patch-automation-specific guidance for the check/apply separation pattern).
+- `examples/vmware-esxi-upgrade-failure-rollback/WALKTHROUGH.md` — second worked example, deliberately showing a failure and rollback path (a host failing post-upgrade validation) rather than a clean success, exercising `templates/rollback-plan.md`'s "No rollback available" classification and forward-fix contingency, and producing a real RCA whose preventive action feeds back into the owning workflow document's Assessment section.
+
+### Changed
+- `workflows/vmware-esxi-vcenter-upgrade-lifecycle/WORKFLOW.md` — Assessment section (shared across all scenarios) updated to include a custom vSwitch/vmkernel configuration audit, closing the gap identified by this milestone's worked example rather than only documenting it as a deferred lesson.
+
+### Next milestone
+- Network vendor documentation in `knowledge/index.md` still needs the actual vendor/model confirmed — outstanding since Milestone 7.
+- `standards/git.md` and `standards/logging.md`, both listed as "planned but not yet written" in `knowledge/index.md` since Milestone 4.

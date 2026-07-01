@@ -34,12 +34,20 @@ Get-VM | Get-View | Select Name, @{N="ToolsStatus";E={$_.Guest.ToolsStatus}}
 # Snapshot inventory (unexpected snapshots complicate host maintenance mode and vMotion)
 Get-VM | Get-Snapshot | Select VM, Name, Created, SizeGB
 
+# Custom vSwitch/vmkernel configuration audit — non-default port groups, custom vmkernel
+# adapters, and non-standard MTU/VLAN settings should be recorded before upgrading, since
+# custom networking configuration predating the target version is a known source of
+# post-upgrade management-network reconnection failures (see
+# examples/vmware-esxi-upgrade-failure-rollback/WALKTHROUGH.md for a worked failure case).
+Get-VMHost | Get-VirtualSwitch | Select VMHost, Name, NumPorts, Mtu
+Get-VMHost | Get-VMHostNetworkAdapter -VMKernel | Select VMHost, Name, IP, PortGroupName, Mtu
+
 # vCenter/VCSA current version and health
 Connect-VIServer <vCenterFQDN>
 (Get-View ServiceInstance).Content.About | Select FullName, Version, Build
 ```
 
-Baseline "healthy" = all hosts connected and responding, HA/DRS enabled with no faults, no unexpected long-lived snapshots, VMware Tools current across the majority of the estate, VCSA services all green in VAMI. Resolve any of these before proceeding — an unhealthy cluster should not have an upgrade layered on top of unresolved issues.
+Baseline "healthy" = all hosts connected and responding, HA/DRS enabled with no faults, no unexpected long-lived snapshots, VMware Tools current across the majority of the estate, VCSA services all green in VAMI, and any custom vSwitch/vmkernel configuration explicitly recorded and cross-checked against the target version's known compatibility notes before proceeding. Resolve any of these before proceeding — an unhealthy cluster should not have an upgrade layered on top of unresolved issues.
 
 ## Risk Analysis (all scenarios)
 
