@@ -105,9 +105,11 @@ These aren't vendor documentation but are treated with equivalent authority for 
 |---|---|---|
 | PCI-DSS v4.0 | Cardholder data environment controls | `templates/change-request.md`, `templates/rca.md`, most agents |
 | ISO/IEC 27001:2022 | ISMS controls (Annex A) | `templates/change-request.md`, `templates/rca.md`, most agents |
-| COBIT 2019 | Governance (esp. BAI06 change management) | `agents/chief-infrastructure-engineer/AGENT.md` |
-| ITIL v4 | Change enablement, problem management, service management practices | Platform-wide |
+| COBIT 2019 | Governance (esp. BAI06 change management, BAI10 managed configuration, DSS01 managed operations) | `agents/chief-infrastructure-engineer/AGENT.md`, `agents/documentation-standards-architect/AGENT.md` (front-matter governance line in SOPs/Build Documents) |
+| ITIL v4 | Change enablement, problem management, service management practices | Platform-wide; `templates/sop.md` and `templates/runbook.md` structure their Standards Alignment sections around specific ITIL v4 practice names |
 | NIST SP 800-61 | Incident handling — useful as a daily/operational incident reporting structure independent of any specific certification framework | `templates/incident-report.md` structures around its four-phase lifecycle (Preparation, Detection & Analysis, Containment/Eradication/Recovery, Post-Incident Activity); owned by `agents/security-architect/AGENT.md` for coordination |
+| NIST SP 800-53 / SP 800-40 / SP 800-123 / CSF 2.0 | Security/privacy control families and IDs (SP 800-53), patch/vulnerability management (SP 800-40), server hardening (SP 800-123), and the Govern/Identify/Protect/Detect/Respond/Recover functions (CSF 2.0) | `templates/build-document.md` Security Configuration/Hardening and Standards Alignment sections; owned by `agents/documentation-standards-architect/AGENT.md`, which must verify the exact control ID and revision via search before citing |
+| CISA / CISM / CISSP bodies of knowledge (ISACA, ISC2) | Terminology and structural framing for risk, governance, and audit-trail language — not citable numbered controls | `agents/documentation-standards-architect/AGENT.md`, which must never cite a fabricated "control number" against these — see `templates/framework-alignment-guide.md` |
 
 ## Maintenance note
 

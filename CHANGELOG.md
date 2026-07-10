@@ -388,3 +388,39 @@ The platform was originally built around one reference environment's real detail
 - Consider whether the repository's own top-level name/GitHub remote (`enterprise-engineering-ai`) should be renamed to match the new consulting-focused framing — not done as part of this pass since it requires the user's own GitHub-side rename and wasn't asked for explicitly.
 - A three-turn adversarial testing round — still open from Milestone 22.
 - `templates/emergency-change.md` still has no worked example — carried over from Milestone 19-23.
+
+## [Milestone 25] - 2026-07-03
+
+### Added
+- `examples/ad-forest-domain-segmentation-programme-charter/WALKTHROUGH.md` — fourth worked example completing `templates/programme-charter.md`, for a recurring engagement pattern: VMware and production servers authenticating via local accounts/IP addresses with no central directory. Fictionalized/generic per this platform's client-agnostic design (no real client details), so it's directly reusable as a starting point across engagements rather than tied to the specific conversation that prompted it.
+- The worked example formalizes a specific architectural recommendation: two separate AD forests (Production/CDE, and Non-Prod/Infra covering test/UAT/SIT/lab plus VMware vCenter/ESXi management-plane identity) rather than two domains in one forest or OU-based separation, on the grounds that the forest — not the domain — is AD's actual security boundary. It also explicitly flags, as a first-class programme risk, that AD identity segmentation alone does not reduce PCI-DSS CDE scope if the underlying VMware cluster still runs CDE and non-CDE VMs on shared hosts — the CDE scope re-determination workstream is scheduled early and in parallel rather than assumed to be a formality.
+- Two workflow gaps honestly tracked in the Risk Register rather than papered over: no dedicated workflow currently exists for bulk local-account-to-domain server migration, or for changing a vCenter SSO identity source — same discipline `examples/10g-network-migration-programme-charter/WALKTHROUGH.md` established when it surfaced the gap later closed by `workflows/network-core-switching-upgrade/WORKFLOW.md`.
+
+### Next milestone
+- If the local-account-to-domain server migration and vCenter-SSO-identity-source-change patterns recur across further engagements, consider authoring dedicated workflow scenarios for them (extending `workflows/active-directory-domain-controller-lifecycle/WORKFLOW.md` and `workflows/vmware-esxi-vcenter-upgrade-lifecycle/WORKFLOW.md` respectively) rather than leaving every occurrence as an ad hoc standalone change.
+- A three-turn adversarial testing round — still open from Milestone 22.
+- `templates/emergency-change.md` still has no worked example — carried over from Milestone 19-24.
+
+## [Milestone 26] - 2026-07-10
+
+### Added
+- `agents/documentation-standards-architect/AGENT.md` — tenth specialist agent, produced from a standalone `sop-build-documentation` Claude Skill the user had built separately and asked to fold into this platform as a persona. Unlike most of the other nine agents, this one is cross-cutting by design (comparable to `security-architect`'s cross-cutting role): it governs *how operational documentation is structured and framed* — Standard Operating Procedures, Build/As-Built Documents, Runbooks, and Work Instructions — not the underlying technical content, which stays owned by whichever domain specialist did the work.
+- `templates/sop.md`, `templates/build-document.md`, `templates/runbook.md`, `templates/work-instruction.md` — four new fillable templates, adapted into this platform's existing Document Control / numbered-atomic-step / Standards Alignment house style (matching `templates/change-request.md`, `templates/rollback-plan.md`, etc.) rather than imported verbatim from the source skill's own format.
+- `templates/framework-alignment-guide.md` — a non-fillable reference template (its own header explains the distinction) mapping ITIL v4, NIST (SP 800-53/SP 800-40/SP 800-123/CSF 2.0), COBIT 2019, and CISA/CISM/CISSP body-of-knowledge terminology onto each of the four document types, including which frameworks to omit per type and the standing rule to verify any specific control ID/practice name/objective code via search before citing it — never from memory alone.
+
+### Changed
+- **Genericized during import**, consistent with the Milestone 24 platform-generalization pass: the source skill referenced a specific individual by first name, a separate personal skill (`zss-change-validator`) not part of this platform, and generic "windows-engineer/vmware-engineer/veeam-engineer" skill names — all replaced with this platform's actual specialist agents (`vmware-architect`, `windows-infrastructure-engineer`, `linux-platform-engineer`, `network-architect`, `database-engineer`, `openstack-architect`, `backup-dr-architect`, `security-architect`) and a Markdown-native output format matching this repo's own template convention, rather than a docx-conversion step this repo doesn't use.
+- `knowledge/index.md` — added NIST SP 800-53/SP 800-40/SP 800-123/CSF 2.0 and the CISA/CISM/CISSP bodies of knowledge as new compliance framework reference rows; extended the existing COBIT 2019 and ITIL v4 rows' "Where referenced" column to include the new agent and templates.
+- `docs/architecture.md` — agent roster table extended to ten rows ("Nine specialist agents" → "Ten specialist agents"), with `documentation-standards-architect`'s owns/defers-to boundary stated explicitly like every other row.
+- `tools/skill-source/SKILL.md` — added a triage table row for the new agent; extended the "Producing platform artifacts" paragraph to include the four new document types; extended the frontmatter `description` field (checked against the 1024-character packaging limit per `tools/README.md`'s own guidance — now at 1003 characters, within budget).
+- `README.md` — specialist agent count (9 → 10) and template count (6 → 11) snapshots updated to match.
+
+### Verification
+- `tests/validate-repo.sh` re-run after all changes: **18 passed, 0 failed** (up from 17 — one more agent now checked for the full nine-section structure).
+- `tools/build-skill.sh` re-run to confirm the new agent and five new templates assemble cleanly into the skill bundle (37 files, up from 33); the generated `dist/` folder was not committed, consistent with it being build output regenerated on demand rather than a repo artifact.
+
+### Next milestone
+- A three-turn adversarial testing round — still open from Milestone 22.
+- `templates/emergency-change.md` still has no worked example — carried over from Milestone 19-25.
+- Consider whether `documentation-standards-architect` needs its own `tests/agent-behavior/` scenario, per `CONTRIBUTING.md`'s rule that a new/changed Decision Framework or Escalation Rules should get a behavioral probe, not just structural validation — not done as part of this milestone.
+- No `.skill` file was repackaged/delivered this milestone (that step requires the skill-creator tooling's `package_skill.py`, external to this repo, per `tools/README.md`) — only the `dist/` folder build was verified.

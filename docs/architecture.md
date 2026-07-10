@@ -14,7 +14,7 @@ An agent executes a workflow and produces output in a template's format. This se
 
 ## Agent roster and boundaries
 
-Nine specialist agents exist so far, each with a deliberately scoped domain and explicit "out of scope, routes to X" boundaries so responsibilities don't silently overlap or fall through gaps:
+Ten specialist agents exist so far, each with a deliberately scoped domain and explicit "out of scope, routes to X" boundaries so responsibilities don't silently overlap or fall through gaps:
 
 | Agent | Owns | Explicitly defers to |
 |---|---|---|
@@ -27,6 +27,7 @@ Nine specialist agents exist so far, each with a deliberately scoped domain and 
 | `openstack-architect` | OpenStack services (Nova/Neutron/Cinder/Glance/Keystone), VMware-to-OpenStack migration (destination side) | `vmware-architect` for migration source side; `linux-platform-engineer` for underlying host OS; `backup-dr-architect` for backup policy |
 | `network-architect` | Physical/logical network, segmentation (PCI-DSS Req. 1), 10G migration programme, upstream ACL/firewall policy (Juniper/Cisco/Mellanox/Supermicro/Fortinet/SonicWall) | `vmware-architect`/`linux-platform-engineer`/`windows-infrastructure-engineer` for host-level networking/firewall; `security-architect` for compliance scope determination |
 | `database-engineer` | PostgreSQL, MySQL, and MSSQL administration/performance, LDAP/AD auth integration (database side, per-engine mechanism), backup/PITR | `windows-infrastructure-engineer` for LDAP/AD server-side and MSSQL's underlying Windows Server OS; infrastructure agents for storage/hypervisor-layer performance root causes; `backup-dr-architect` for broader backup policy |
+| `documentation-standards-architect` | Producing audit-ready SOPs, Build/As-Built Documents, Runbooks, and Work Instructions, framed against ITIL v4/NIST/COBIT 2019/CISA-CISM-CISSP terminology (`templates/sop.md`, `templates/build-document.md`, `templates/runbook.md`, `templates/work-instruction.md`) | Every domain specialist for the underlying technical content and its correctness; `security-architect` for compliance-scope/posture determination; `chief-infrastructure-engineer`/`security-architect` for change requests, RCAs, and incident reports, which have their own templates and owners |
 
 This table is itself a simplification — each agent's own `AGENT.md` "Scope" section is the authoritative boundary definition. When two agents' responsibilities seem to overlap on a specific task, `chief-infrastructure-engineer`'s arbitration role exists precisely for that ambiguity.
 
